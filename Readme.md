@@ -1,4 +1,4 @@
-# October Plugin Class
+# October WordPress Plugin Class
 
 A PHP class designed to speed up the development of WordPress plugins 
 by providing all the base functionality required for a plugin.
