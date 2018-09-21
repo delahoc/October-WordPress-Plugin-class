@@ -39,88 +39,9 @@
  *	"submenus" => another array for each of the submenus for this top level menu. Uses the same three items as settings, tools and media menus above
  **/
 
-/**
- *	Format of hash arrays used for adding custom post types
- *	"slug" => Slug for the new custom post type.
- *	The value of this key is then another array containing all the custom post type key/value pairs
- *	(See https://www.wpbeginner.com/wp-tutorials/how-to-create-custom-post-types-in-wordpress/ for details)
- *	Example:
- 
-		public $custom_post_types = array(		// override parent class property to fill with custom post types
-			'jobs' => array(
-				'custom_fields' => array(			// see http://blog.teamtreehouse.com/create-your-first-wordpress-custom-post-type
-					'general' => array(				// this is a group of custom fields to be displayed together
-						'slug' => 'general',
-						'title' => 'General options',
-//						'callback' => 'render_admin_job_general', // if no callback is given, the class default is used
-						'context' => 'normal',		// location on edit screen: 'normal', 'side'
-						'priority' => 'high',		// Priority of placement order: 'low', 'default', 'core', 'high'
-						'fields' => array(			// an array of the actual custom fields names and types
-							'job_location' => array(
-								'label' => 'Job location',
-								'type' => 'text'
-							)
-						)
-					)
-				),
-				'labels' => array(
-                	'name' => 'Jobs',
-                	'singular_name' => 'Job',
-					'menu_name' => 'Jobs',
-					'all_items' => 'All Jobs',
-					'view_item' => 'View Job',
-					'add_new_item' => 'Add New Job',
-					'add_new' => 'Add New Job',
-					'edit_item' => 'Edit Job',
-					'update_item' => 'Update Job',
-					'search_items' => 'Search Jobs'
-            	),
-            	'public' => true,
-            	'has_archive' => true
-			)
-		);
- 
- **/
-
-/**
- *	Format of hash arrays used for adding custom taxonomies
- *	"slug" => Slug for the new custom taxonomy
- *	The value of this key is then another array containing all the taxonomy key/value pairs
- *	(See https://www.wpbeginner.com/wp-tutorials/create-custom-taxonomies-wordpress/ for details)
- *	Example:
- 
-		public $custom_taxonomies = array(		// override parent class property to fill with custom taxonomies
-			'skills' => array(
-				'post_types' => array( 'jobs' ),
-				'labels' => array(
-                	'name' => 'Skills',
-                	'singular_name' => 'Skill',
-					'menu_name' => 'Skills',
-					'all_items' => 'All Skills',
-					'view_item' => 'View Skill',
-					'add_new_item' => 'Add New Skill',
-					'add_new' => 'Add New Skill',
-					'edit_item' => 'Edit Skill',
-					'update_item' => 'Update Skill',
-					'search_items' => 'Search Skills',
-					'parent_item' => 'Skill Area',
-					'parent_item_colon' => 'Skill Area:',
-				),
-            	'public' => true,
-				'show_ui' => true,
-				'show_admin_column' => true,
-				'query_var' => true,
-				'hierarchical' => true
-			)
-		);
-
-**/
-
-
-
 if( !class_exists( 'october_plugin' ) ) {
 	class october_plugin {
-		public $class_version	= 002;		// Version number of the october-plugin-class
+		public $class_version	= 001;		// Version number of the october-plugin-class
 		public $version			= 001;		// Version number of the subclass
 		public $copyright		= '';		// Copyright notice
 		public $slug 			= '';		// This slug is used as the short name for the plugin. Must be unique.
@@ -145,9 +66,6 @@ if( !class_exists( 'october_plugin' ) ) {
 		public $ajax_response	= null;		// Array of key/value pairs that will be sent back to the calling client in json.
 		public $ajax_response_text = '';	// json encoded copy of $ajax_response - sent in response to an ajax request
 		public $ajax_users_only	= true;		// Flag. If true, only logged in users will be able to access admin-ajax.php. (Override to false in subclass if required)
-		public $custom_post_types = null;	// Array of arrays, one for each custom post type
-		public $custom_taxonomies = null;	// Array of arrays, one for each custom taxonomy
-		public $custom_fields = null;		// Array of arrays, one for each custom field
 
 
 		/**
@@ -167,9 +85,6 @@ if( !class_exists( 'october_plugin' ) ) {
 				add_action( 'admin_enqueue_scripts', array( &$this,'do_admin_enqueues' ) );
 				add_action( 'admin_menu', array( &$this, 'add_admin_menus' ) );
 				add_action( 'init', array(&$this, 'initialise') );
-				add_action( 'init', array(&$this, 'create_custom_post_types') );
-				add_action( 'init', array(&$this, 'create_custom_taxonomies') );
-				add_action( 'admin_init', array(&$this, 'include_custom_fields') );
 				// Add a shortcode
 				add_shortcode( $this->slug, array(&$this, 'do_shortcode') );
 			}
@@ -205,7 +120,7 @@ if( !class_exists( 'october_plugin' ) ) {
 
 		
 		/**
-		 *	Do any other initialisation stuff that needs to occur after WordPress is loaded
+		 * Do any other initialisation stuff that needs to occur after WordPress is loaded
 		**/
 		public function initialise() {
 			$this->log( 3, "initialise() Started." );
@@ -214,111 +129,6 @@ if( !class_exists( 'october_plugin' ) ) {
 			}
 		} // END public static function initialise()
 		
-		/**
-		 *	If we have Custom Fields added, allow for them.
-		**/
-		
-		public function include_custom_fields() {
-			$this->log( 3, "include_custom_fields() Started." );
-			if( null !== $this->custom_post_types ) {
-				// We've confirmed we actually have custom post types, so proceed. Loop through all custom post types
-				foreach( $this->custom_post_types as $ct_key => $ct_val ) {
-					$this->log( 3, "include_custom_fields() Found Custom post ".$ct_key );
-					if( array_key_exists( 'custom_fields', $ct_val) ) {
-						// We've confirmed that this custom type type has custom fields, so proceed. Loop through all custom fields
-						$fields = $ct_val['custom_fields'];
-						foreach( $fields as $cf_key => $cf_val ) {
-							// Add a meta box for this custom field to the custom post admin screen
-							$myrender = array_key_exists( 'callback', $cf_val ) ? $cf_val['callback'] : array(&$this, 'render_custom_meta_box');
-							add_meta_box( 
-								$cf_val['slug'],			// slug or id for the meta box
-								$cf_val['title'],			// title of the meta box
-								$myrender,
-								$ct_key,					// slug of the custom post this applies to
-								$cf_val['context'],			// where the meta box is placed onthe edit screen
-								$cf_val['priority'],		// the priority for placement order
-								$cf_val['fields']			// args passed to the callback function
-							);
-							// Add a callback to the save_post WordPress action hook to ensure the meta data is saved
-							foreach( $cf_val['fields'] as $field_name => $fdata ) {
-								if( array_key_exists( $field_name, $_POST ) ) {
-									$newfuncname = "save_post_meta_".$field_name;
-									$this->log( 3, "include_custom_fields() add_action outside newfuncname = ".$newfuncname );
-									$this->{ $newfuncname } = function( $arga ) use ($field_name) {
-										$this->log( 1, "include_custom_fields() add_action INSIDE post id = ".$arga );
-										$this->log( 1, "include_custom_fields() add_action INSIDE field_name = ".$field_name );
-										update_post_meta( $arga, $field_name, $_POST[ $field_name ] );
-									};
-									add_action( 'save_post', $this->{ $newfuncname }, 10, 1 );
-								} // END of if()
-							} // END of foreach
-						} // END of foreach()
-					} // END of if()
-				} // END of foreach()
-			} // END of if()
-		} // END public function include_custom_fields()
-		
-		
-		/**
-		 *	Function to render out the contents of a custom field meta box
-		 *	(See http://blog.teamtreehouse.com/create-your-first-wordpress-custom-post-type)
-		 *	(See https://developer.wordpress.org/reference/functions/add_meta_box/)
-		**/
-		
-		public function render_custom_meta_box( $mypost, $myargs ) {
-			$this->log( 1, "render_custom_meta_box() Started.");
-			$this->log( 3, "args=".print_r( $myargs, true ) );
-			foreach( $myargs['args'] as $field_name => $field_data ) {
-				echo "<p><label>".$field_data['label']."</label><br />";
-				$custom = get_post_custom( $mypost->ID );
-				$current = array_key_exists( $field_name, $custom ) ? $custom[ $field_name ][0] : "";
-				switch ( $field_data['type'] ) {
-					case 'text':
-						$size = array_key_exists( 'size', $myargs['args'] ) ? $myargs['args'] : 40;
-						echo '<input type="text" name="'.$field_name.'" value="'.$current.'" size="'.$size.'" />';
-						break;
-					case 'date':
-						echo '<input type="date" name="'.$field_name.'" value="'.$current.'" />';
-						// min / max support to come
-						break;
-					case 'time':
-						echo '<input type="time" name="'.$field_name.'" step="5" value="'.$current.'" />';
-						break;
-				}
-				echo "</p>\n";
-			}
-		}
-
-		/**
-		 *	If we have Custom Taxonomies added, create them
-		**/
-		
-		public function create_custom_taxonomies() {
-			$this->log( 3, "create_custom_taxonomies() Started." );
-			if( null !== $this->custom_taxonomies ) {
-				foreach( $this->custom_taxonomies as $ct_key => $ct_val ) {
-					$this->log( 3, "create_custom_taxonomies() Register ct ".$ct_key );
-					register_taxonomy( $ct_key, $ct_val[ 'post_types' ], $ct_val );
-				}
-			}
-		}
-
-		/**
-		 *	If we have Custom Post Types added, create them
-		**/
-		
-		public function create_custom_post_types() {
-			$this->log( 3, "create_custom_post_types() Started." );
-			if( null !== $this->custom_post_types ) {
-				foreach( $this->custom_post_types as $cpt_key => $cpt_val ) {
-					$this->log( 3, "create_custom_post_types() Register cpt ".$cpt_key );
-					register_post_type( $cpt_key, $cpt_val );
-				}
-				add_action('update_option', function() {
-					update_option('default_comment_status', 'open');
-				});
-			}
-		}
 
 		/**
 		 *	AJAX HANDLING
