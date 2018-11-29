@@ -8,6 +8,14 @@ See source code for documentation.
 
 Change log:
 
+v0.03
+Released: 29 Nov 2018
+- Fixed a bug when rendering Admin meta boxes for custom fields
+- Streamlined shortcodes and added extra debugging and error checking
+- Added boolean field type to custom post admin menu page; shows as checkbox
+- Added add_bp_member_submenu() which adds a submenu to the Buddypress user profile page
+- Updated in-file documentation
+
 v0.02
 Released: 21 Sep 2018
 - Added support for creating Custom Post Types
