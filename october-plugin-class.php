@@ -29,9 +29,9 @@
 
  *	
  *	The following files are enqueued automatically if they exist in the plugin root folder:
- *	slug.js				(namespace for localized data = slug [slug is sanitized for js, ie all nonalphanumerics are changed to '_' ] )
+ *	slug.js				(namespace for localized data = slug [slug is sanitised for js, ie all nonalphanumerics are changed to '_' ] )
  *	slug.css
- *	slug_admin.js		(namespace for localized data = slug_admin [slug is sanitized for js, ie all nonalphanumerics are changed to '_' ] )
+ *	slug_admin.js		(namespace for localized data = slug_admin [slug is sanitised for js, ie all nonalphanumerics are changed to '_' ] )
  *	slug_admin.css
  **/
 
@@ -387,7 +387,7 @@ if( !class_exists( 'october_plugin' ) ) {
 		public $version			= 001;		// Version number of the subclass
 		public $copyright		= '';		// Copyright notice
 		public $slug 			= '';		// This slug is used as the short name for the plugin. Must be unique.
-		public $js_slug			= '';		// The same slug, but sanitised for javascript (ie, dashes/dots change to underscore, etc)
+		public $js_slug			= '';		// The same slug, but sanitised for javascript, databases, etc (ie, dashes/dots change to underscore, etc)
 		public $file_base		= '';		// full path to plugin file (including filename)
 		public $class_base		= '';		// full path to class file (including filename)
 		public $log_verbosity 	= 1;		// 0 = no logging, 1=errors/warnings only, 2=tracking, 3=all (very verbose, debugging only)
@@ -432,6 +432,7 @@ if( !class_exists( 'october_plugin' ) ) {
 		public function __construct( $slug = null ) {
 			if( null !== $slug ) {
 				$this->slug = $slug;
+				// sanitise the slug
 				$this->js_slug = preg_replace( "/[^a-zA-Z0-9]/", "_", $slug );
 				$this->file_base = plugin_dir_path( dirname( __FILE__ ) ).$this->slug.'.php';
 				$this->class_base = plugin_dir_path( dirname( __FILE__ ) ).'october-plugin-class.php';
@@ -602,6 +603,8 @@ if( !class_exists( 'october_plugin' ) ) {
 				if( array_key_exists( 'list_table', $current[ 'admin' ] ) && array_key_exists( 'hidden', $current[ 'admin' ][ 'list_table' ] ) ) {
 					$this->log( 3, "db_lt_hidden_columns() columns = ".print_r( $columns, true ) );
 					return $current[ 'admin' ][ 'list_table' ][ 'hidden' ];
+				} else {
+					return array();
 				}
 			}
 			return null;
@@ -756,9 +759,12 @@ if( !class_exists( 'october_plugin' ) ) {
 			$addButton = sprintf('<a href="?page=%s&action=%s" class="button button-secondary" style="margin-right: 3em;">Add New '.$current[ 'admin' ][ 'singular' ].'</a>',$_REQUEST['page'],'new');
 			echo $addButton;
 			
-			// add an Add New button
-			$importButton = sprintf('<a href="?page=%s&action=%s" class="button button-secondary" style="margin-right: 3em;">Import CSV data</a>',$_REQUEST['page'],'import');
-			echo $importButton;
+			// add an Import CSV button
+			$doImport = ( array_key_exists( 'import', $current[ 'admin' ] ) ) ? $current[ 'admin' ][ 'import' ] : false;
+			if( $doImport ) {
+				$importButton = sprintf('<a href="?page=%s&action=%s" class="button button-secondary" style="margin-right: 3em;">Import CSV data</a>',$_REQUEST['page'],'import');
+				echo $importButton;
+			}
 			
 			// Create and display the List Table
 			$this->list_table = new octo_list_table();
@@ -1023,7 +1029,7 @@ if( !class_exists( 'october_plugin' ) ) {
 			$this->log( 2, "create_db_table() started." );
 			global $wpdb;
 			$charset_collate = $wpdb->get_charset_collate();
-			$table_name = $wpdb->prefix.$this->slug.'_'.$table['name'];
+			$table_name = $wpdb->prefix.$this->js_slug.'_'.$table['name'];
 			$sql = "CREATE TABLE $table_name (
 				id mediumint(9) UNSIGNED NOT NULL AUTO_INCREMENT,
 				created timestamp DEFAULT CURRENT_TIMESTAMP NOT NULL,
