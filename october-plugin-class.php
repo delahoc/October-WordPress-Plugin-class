@@ -1077,6 +1077,7 @@ if( !class_exists( 'october_plugin' ) ) {
 		//	(Called during admin_menu hook)
 		public function make_db_menu() {
 			$this->log( 3, "make_db_menu() started." );
+			$menuRequired = false;
 
 			// Check for any custom_db entries
 			if( null !== $this->custom_db ) {
