@@ -5,7 +5,6 @@ by providing all the base functionality required for a plugin.
 Plugins can then be built from a class that extends this class.
 
 See source code for documentation.
-<<<<<<< HEAD
 
 Change log:
 
@@ -40,5 +39,3 @@ Released: 21 Sep 2018
 v0.01
 Released: 17 Aug 2018
 Initial release
-=======
->>>>>>> 8f13817e9a87df6098fc3f7efa13cc99c65ec437
