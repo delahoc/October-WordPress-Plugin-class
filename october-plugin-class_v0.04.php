@@ -1,6 +1,6 @@
 <?php
 
-/**	This class helps to speed up the development of plugins
+/**	This class helps to speed up the development of plugins 
  *	by providing all the base functionality required for a plugin.
  *	Plugins can then be built from a class that extends this class.
  *  See the example plugin and this file for usage details
@@ -27,7 +27,7 @@
 			)
 		);
 
- *
+ *	
  *	The following files are enqueued automatically if they exist in the plugin root folder:
  *	slug.js				(namespace for localized data = slug [slug is sanitised for js, ie all nonalphanumerics are changed to '_' ] )
  *	slug.css
@@ -49,39 +49,37 @@
  *	"icon" => the url or string for the icon (see https://developer.wordpress.org/reference/functions/add_menu_page/) (Optional)
  *		For Dashicons, see https://developer.wordpress.org/resource/dashicons
  *	"position" => the integer order of the menu item in the admin menu (Optional)
- *	"submenus" => another array for each of the submenus for this top level menu.
+ *	"submenus" => another array for each of the submenus for this top level menu. 
  *			Uses the same three items as settings, tools and media menus above.
  *			Key for each entry is the ordinal position for the submenu, starting at 0
  *
  *	Example:
- *		public $admin_menus = array(
- *			'menu' => array(
- *				'title' => 'My test menu',				// Used for browser tabs
- *				'label' => 'Test menu',					// Text of actual menu item
- *				'icon'	=> 'dashicons-admin-tools',		// See above for link to dashicons
- *				'position' => 30,						// See positions explained in the developer.wordpress.org link above
- *				'slug' => 'testmenu',					// Unique slug for this menu.
- *														// If it already exists, the submenus will be added to the existing menu
- *				'submenus' => array(
- *					'0' => array(
- *						'title' => 'First submenu',
- *						'label' => 'The first submenu',
- *						'template' => 'templates/menu-first.php'	// path is relative to the main plugin file.
- *					),
- *					'1' => array(
- *						'title' => 'Second submenu',
- *						'label' => 'The second submenu',
- *						'template' => 'templates/menu-second.php'	// path is relative to the main plugin file.
- *					)
- *				)
- *			),
- *			'settings' => array(
- *				'title' => 'My test settings submenu',
- *				'label' => 'Test Setting Submenu',
- *				'template' => 'templates/settings-submenu.php'		// path is relative to the main plugin file.
- *			)
- *		);
- *
+ 		public $admin_menus = array(
+			'menu' => array(
+				'title' => 'My test menu',				// Used for browser tabs
+				'label' => 'Test menu',					// Text of actual menu item
+				'icon'	=> 'dashicons-admin-tools',		// See above for link to dashicons
+				'position' => 30,						// See positions explained in the developer.wordpress.org link above
+				'submenus' => array(
+					'0' => array(
+						'title' => 'First submenu',
+						'label' => 'The first submenu',
+						'template' => 'templates/menu-first.php'	// path is relative to the main plugin file.
+					),
+					'1' => array(
+						'title' => 'Second submenu',
+						'label' => 'The second submenu',
+						'template' => 'templates/menu-second.php'	// path is relative to the main plugin file.
+					)
+				)
+ 			),
+			'settings' => array(
+				'title' => 'My test settings submenu',
+				'label' => 'Test Setting Submenu',
+				'template' => 'templates/settings-submenu.php'		// path is relative to the main plugin file.
+			)
+		);
+		
  **/
 
 /**
@@ -92,47 +90,46 @@
  *	The value of this key is then another array containing all the custom post type key/value pairs
  *	(See https://www.wpbeginner.com/wp-tutorials/how-to-create-custom-post-types-in-wordpress/ for details)
  *	Example:
- *
- *		public $custom_post_types = array(		// override parent class property to fill with custom post types
- *			'jobs' => array(
- *				'custom_fields' => array(			// see http://blog.teamtreehouse.com/create-your-first-wordpress-custom-post-type
- *					'general' => array(				// this is a group of custom fields to be displayed together
- *						'slug' => 'general',
- *						'title' => 'General options',
- * //						'callback' => 'render_admin_job_general', // if no callback is given, the class default is used
- *						'context' => 'normal',		// location on edit screen: 'normal', 'side'
- *						'priority' => 'high',		// Priority of placement order: 'low', 'default', 'core', 'high'
- *						'fields' => array(			// an array of the actual custom fields names and types
- *							'job_location' => array(
- *								'label' => 'Job location',
- *								'type' => 'text'	// Implemented types are text, number, date, time, boolean,
- *													// parent_drop and custom
- *							)
- *						)
- *					)
- *				),
- *				'labels' => array(
- *                	'name' => 'Jobs',
- *                	'singular_name' => 'Job',
- *					'menu_name' => 'Job Board',
- *					'all_items' => 'All Jobs',
- *					'view_item' => 'View Job',
- *					'add_new_item' => 'Add New Job',
- *					'add_new' => 'Add New Job',
- *					'edit_item' => 'Edit Job',
- *					'update_item' => 'Update Job',
- *					'search_items' => 'Search Jobs'
- *            	),
- *            	'public' => true,
- *				'show_in_menu' => true,
- *				'supports' => array( 'title', 'editor', 'author' ),
- *				'menu_position' => 2,
- *				'menu_icon' => 'dashicons-index-card',
- *				'can_export' => true,
- *            	'has_archive' => true
- *			)
- *		);
- *
+ 
+		public $custom_post_types = array(		// override parent class property to fill with custom post types
+			'jobs' => array(
+				'custom_fields' => array(			// see http://blog.teamtreehouse.com/create-your-first-wordpress-custom-post-type
+					'general' => array(				// this is a group of custom fields to be displayed together
+						'slug' => 'general',
+						'title' => 'General options',
+//						'callback' => 'render_admin_job_general', // if no callback is given, the class default is used
+						'context' => 'normal',		// location on edit screen: 'normal', 'side'
+						'priority' => 'high',		// Priority of placement order: 'low', 'default', 'core', 'high'
+						'fields' => array(			// an array of the actual custom fields names and types
+							'job_location' => array(
+								'label' => 'Job location',
+								'type' => 'text'
+							)
+						)
+					)
+				),
+				'labels' => array(
+                	'name' => 'Jobs',
+                	'singular_name' => 'Job',
+					'menu_name' => 'Job Board',
+					'all_items' => 'All Jobs',
+					'view_item' => 'View Job',
+					'add_new_item' => 'Add New Job',
+					'add_new' => 'Add New Job',
+					'edit_item' => 'Edit Job',
+					'update_item' => 'Update Job',
+					'search_items' => 'Search Jobs'
+            	),
+            	'public' => true,
+				'show_in_menu' => true,
+				'supports' => array( 'title', 'editor', 'author' ),
+				'menu_position' => 2,
+				'menu_icon' => 'dashicons-portfolio',
+				'can_export' => true,
+            	'has_archive' => true
+			)
+		);
+ 
  **/
 
 /**
@@ -143,7 +140,7 @@
  *	The value of this key is then another array containing all the taxonomy key/value pairs
  *	(See https://www.wpbeginner.com/wp-tutorials/create-custom-taxonomies-wordpress/ for details)
  *	Example:
-
+ 
 		public $custom_taxonomies = array(		// override parent class property to fill with custom taxonomies
 			'skills' => array(
 				'post_types' => array( 'jobs' ),
@@ -172,9 +169,9 @@
 **/
 
 /**
- *	Format of hash arrays used for adding Buddypress submenu with add_bp_member_submenu( $data )
+ *	Format of hash arrays used for adding Buddypress submenu with add_bp_member_submenu( $data ) 
  *	Example:
-
+ 
 	function add_bp_profile_test() {
 		global $ojob;
 		$data = array(
@@ -192,7 +189,7 @@
 		$ojob->add_bp_member_submenu( $data );
 	}
 
-	add_action( 'bp_setup_nav', 'add_bp_profile_test', 100 ); // then need to add the above function to the correct action
+	add_action( 'bp_setup_nav', 'add_bp_profile_test', 100 ); // then need to add the above function to the correct action 
 
  **/
 
@@ -208,7 +205,7 @@
  *	(eg [myplugin command="task1"], and then [myplugin command="task2"])
  *	If there will only be one command ever needed you can omit this attribute and the class will use
  *	whatever you define for 'default' as the command name. (See example below)
- *
+ *	
  *	The array attached to the command name is then the default values for all of the valid attributes allowed
  *	for that command. Any attribute encountered in the shortcode that does not have a default value is discarded/ignored.
  *	Every command array MUST include a 'callback' => 'method' pair, where 'method' is the class method that will be
@@ -233,7 +230,7 @@
  *	This example will permit the use of either of these shortcodes:
  *	[myplugin att1="99"]
  *	[myplugin command="load_posts" test="newValue"]
-
+		
 **/
 
 /**
@@ -243,29 +240,29 @@
  *	The class looks for a $_POST key called "command", and uses the value of that key to match a key in the $ajax_commands
  *	property, and uses the value of that as the name of a function to execute. The class automatically adds a hook
  *	into the WordPress ajax handlers equal to the slug of the plugin, similar to the way this class handles shortcodes (above),
- *	which means WordPress will be looking for a 'action' => 'slug' pair in the ajax call data. If WordPress receives
+ *	which means WordPress will be looking for a 'action' => 'slug' pair in the ajax call data. If WordPress receives 
  *	such a pair, it passes control to the class, and the class then looks for a 'command' => '[insert your command]' pair.
- *
+ *	
  *	Eg
  *	public $ajax_commands = array(
  *		"testcommand" => "testfunc"
  *	);
- *
+ * 	
  *	The above code will execute the method $my_instance->testfunc() when the ajax receives "command" => "testcommand".
- *	This means at a minimum, your ajax call must include in the form data array:
- *		'action' => 'slug',				// without this, WordPress returns a 400 error			
+ *	This means at a minimum, your ajax call must include:
+ *		'action' => 'slug',
  *		'command' => 'something'
- *	You may also want to include a WordPress nonce if this call is only permitted by a logged in user.
+ *	You may also want to include a WordPress nonce is this call is only permitted by a logged in user.
  *	The function can access all the form data through $my_instance->ajax_response['form']. It can send data back using
  *	any added key=>value pairs on that array, or using the add_ajaxData() method to add key/value pairs to the
  *	$my_instance->ajax_response['data'] object, or using the push_ajaxData() method below to add an object to the
- *	$my_instance->ajax_response['data'] array. The method should return 1 for successful completion, or 0 for
+ *	$my_instance->ajax_response['data'] array. The method should return 1 for successful completion, or 0 for 
  *	error/incomplete (and add a meaningful error message to $my_instance->ajax_response['error'] ).
 **/
 
 /**
  *	Custom Database
- *
+ *	
  *	Easily create a custom MySQL database inside your WordPress installation.
  *	The class automatically adds a menu to the admin screen for your database for quick viewing and editing of data.
  *	You can have multiple tables within the database, and define exactly all of the columns within.
@@ -274,7 +271,7 @@
  *	here to create those tables can also be used to simplify the creation of List Tables for other purposes.
  *
  *	Override the property custom_db to define your custom database:
-
+ 
  		public $custom_db = array(
 			'menuName'	=> 'oRater Database',			// label given in the admin menu
 			'pageTitle' => 'oRater Database page',		// page title for the admin page
@@ -282,11 +279,10 @@
 				'name' => 'rating_category',		// table name. No spaces, etc, as per usual MySQL rules
 				'cols' => array(					// define all the columns
 					// a column called 'id' will be added automatically (id mediumint(9) NOT NULL AUTO_INCREMENT) (UNIQUE KEY id (id))
-					// a column called 'created' will be added automatically
+					// a column called 'created' will be added automatically 
 					// a column called 'modified' will be added automatically
 					'name' => 'VARCHAR(25) NOT NULL',	// key = column name, value = valid MySQL table initialisation string
 					'type' => 'VARCHAR(15) NOT NULL',
-					'dept' => MEDIUMINT(9) NOT NULL,
 					'cost' => 'DECIMAL(11,2) DEFAULT 0',
 					'secretNotes' => 'TEXT',
 					'description' => 'VARCHAR(125) NOT NULL'
@@ -302,41 +298,25 @@
 							'label' => 'Category Name'		// Adding a label adds this column to the admin screen List Table.
 															// The label is also used on the 'edit' and 'Add New' screens. Without a label, those screens show the column name.
 															// If you want a nice label for those screens, but not have this column in the List Table, add the column to the 'hidden' array below.
-							'description' => 'A clear, unique, self-explanatory name for the category.'
-															// The description is used on the Edit and Add New screens under the field label
 						),
 						'type' => array(
 							'label' => 'Rating Type',
-							'options' => array(
-								'5star' => '5 star' ),		// Edit and Add New screen will present this array as a drop down for selecting a valid value
-															// key = option name (the value that will be saved in the database), value = label for option
+							'options' => array( '5 star' ),	// Edit and Add New screen will present this array as a drop down for selecting a valid value
 							'separator' => true				// Draw a separator after this field on the 'edit' and 'Add New' screens. Helps to break up the data on those screens.
 						),
-						'dept' => array(
-							'label' => 'Department',
-							'link' => 'dept.name',			// Link this record to a record in a table called 'dept'. Use the column 'name' to display selections.
-							'linktype' => 'single'			// Link type. 'single' is default and only allows linking to a single record in the other table.
-															// Other option is 'multiple', which allows linking to multiple records in the other table.
-															// Note that List Table column filtering doesn't as yet work with link columns
-						)
 						'cost' => array(
 							'label' => 'Cost',
 							'prefix' => '$',				// Displays this on the 'edit' and 'Add New' screens immediately BEFORE the field
 							'suffix' => 'USD',				// Displays this on the 'edit' and 'Add New' screens immediately AFTER the field
 						),
+						'description' => array(
+							'label' => 'Description'
+						)
 					),
 					'list_table' => array(					// An array of options for the List Table
 						'include_modified'	=> true,		// Include the last_modified column in the List Table? true is the default
-						'display_modified' => 'display_modified_column',	// display filter function for modified column
 						'bulk_actions'	=> array(			// Adding bulk actions automatically adds the drop down and the cb column
 							'delete' => 'Delete'
-						),
-						'filters' => array(							// Add a filter above the List Table to filter content on a column
-							'type' => array(						// key is the name of the column to find the filter value
-								'Active and non-active'	=> null,	// key = drop down text, a null value will show all results
-								'Only show 5 star type' => '5star',	// key = drop down text, value = value to match for filtering
-								'Only show 10 star type' => '10star'
-							)
 						),
 						'actions' => array(					// Add any specific actions to a column. These appear under each value in the column
 															// Any column called 'name' will automcatically have "edit" and "delete" actions added.
@@ -345,12 +325,11 @@
 								array(
 									'slug' => 'filtercol',		// 'filtercol' is handled by the class and filters the data to only those rows where this column is equal to this value
 									'label' => 'Filter'			// This is the text that will appear beneath each value in the column
-															// Note that List Table column filtering doesn't as yet work with link columns
 								),
 								array(
 									'slug' => 'unfiltercol',	// 'unfiltercol' is handled by the class and removes all filters
 									'label' => 'Unfilter'		// This is the text that will appear beneath each value in the column
-								)
+								) 
 							)
 						),
 						'sortable' => array( 'name', 'type' ),	// sortable columns (modified is already included if include_modified is set)
@@ -359,87 +338,8 @@
 				)
 			)
 
- *
+ *	
 **/
-
-
-/**
- *	Custom WIDGETS
- *
- *	A system to quickly create and manage custom widgets
- *
- *	Override the property custom_widgets to define your custom widgets:
- *
- *	public $custom_widgets = array(				//	Note: all options are required!!
- *		'my_links' => array(					//	the key will be the unique slug for the widget. Must be unique.
- *		'label' => 'My Favourite Links',		//	label is the name of the widget as the user will see it on admin screen.
- *		'description' => 'Displays a list of helpful offsite links',	//	Description of the widget
- *		'frontend' => 'links_frontend',			//	callback function to handle the front end display (output of the widget)
- *												//	The callback function receives three arguments:
- *												//	Object - the current WP_Widget class Object
- *												//	Args - array of widget arguments
- *												//	Instance - array of values for the current widget instance
- *		'backend' => 'links_backend'			//	callback function to handle the back end (admin settings)
- *											 	//	The callback function receives two arguments:
- *												//	Object - the current WP_Widget class object
- *												//	Instance - array of values for the current widget instance
- *		)
- *	);
- *  For more information on creating the two callback functions, see the widget() and form() functions on:
- * 	https://kinsta.com/blog/create-wordpress-widget/
- *	https://www.wpbeginner.com/wp-tutorials/how-to-create-a-custom-wordpress-widget/
- *	https://www.wpexplorer.com/create-widget-plugin-wordpress/
- *	You may also be interested in the Widget API functions in WordPress:
- *	https://codex.wordpress.org/Widgets_API
- *
-**/
-
-/**
- *	Admin Settings
- *
- *	Add a menu item to any admin menu, and manage the display and saving of WP Settings.
- *	Saves settigs as WP Options which can be retrieved using the WordPress get_option function.
- *
- *	To use, override the admin_settings property. Example:
- *
- *	public $admin_settings = array(
- *		'main_settings'	=> array(				//	slug for this settings page. Can be anything. Not really used.
- *		'menuslug' => 'jobs',					//	slug for the top level menu these settings will be added to as a submenu.
- *												//	Could be an existing custom menu, or use 'settings' for the settings menu.
- *		'subslug' => 'jobboard_settings',		//	Slug for the submenu. If null, it will be <menuslug>_submenu_settings
- *		'title' => 'LiquidIQ Job Board settings',		//	Title for the menu item screen. Used when displaying the screen.
- *		'label' => 'Job Board settings',		//	Label for the menu item. Used as the submenu item text the admin menu.
- *		'sections' => array(					//	Each settings screen is made up of one or more sections.
- *			'employers' => array(				//	Just a slug for the section. Can be anything unique. Not really used.
- *				'id' => 'jobboard_employers',	//	unique ID for this section.
- *				'title' => 'Employer options',	//	Title for this section, for showing on the admin settings screen
- *				'text' => 'These options are relevant to Employer memberships',	// Appears under heading for section
- *			//	'callback' => null				//	Callback for displaying the contents. If missing or null, use the
- *												//	default, in-built callback.
- *				'fields' => array(				//	This opens an array of arrays, one for each of the fields to be
- *												//	dispayed and saved. Must be 'fields'.
- *					array(
- *						'id' => 'jobPostLimit',	//	This is the unique id for this field. This is the key under which it will be
- *												//	saved in the options table. To retrieve, call get_options( 'jobPostLimit' ).
- *						'title' => 'Job Post Limit for non-Premium employers',
- *												//	Text used as label for displaying the field on the settings screen.
- *						'callback' => null,		//	Callback for displaying the input tag. If missing or null, use the
- *												//	default, in-built callback.
- *						'type' => 'integer',	//	Type of the data to be saved. Can be 'number', 'integer', 'string','boolean'
- *						'minimum' => 1,			//	This is the minimum allowed value if type = integer or number
- *						'maximum' => 100,		//	This is the maximum allowed value if type = integer or number
- *						'default' => 4,			//	Default value for the field. Must be compatible with the given type.
- *						'prefix' => "",			//	Displayed before the input field for things like $
- *						'suffix' => "%",		//	Displayed after the input field for things like %
- *					)
- *				) // END of jobposts fields
- *			) // END of jobposts section
- *		) // END of sections array
- *	) // END of main_settings array
- * );
- *
- **/
-
 
 /**
  *	Hide admin toolbar
@@ -454,34 +354,9 @@
 		public function initialise() {
 			$this->hideAdminToolbar();
 		}
-
+ 
 **/
 
-
-/**
- *	Changes to v0.05
- *	Clean imported CSV field			// Added cleaning to imported CSV file field names to improve compatibility with MySQL
- *	Added Admin Settings				// Added support to display and save WP Settings on the admin pages
- *	Added custom widgets				// Added support to easily create custom widgets
- *	Added display_modified				// Added display_modified key/value pair to provide custom display of the list table modified field
- *	Added sendEmail()					// Added sendEmail() to send an email to any user. Requires user id, subject and text
- *	Added sendAdminEmail()				// Added sendAdminEmail() to send an email to the site admin. Requires subject and text
- *	Added sendLoginEmail()				// Added sendLoginEmail() to send an email to site admin when any user logs in.
- * 	Added custom_drop rendering			// Added custom_drop rendering to custom fields of custom posts on the admin screen
- *	Added custom meta data type			// Added custom type to custom fields of custom posts, to allow users to define their own render and save functions
- *	Added options for editing fields	// Added ability to define a list of options to database fields displayed as a drop box in Edit and Add New screen
- *	Various bugfixes to List Tables		// Fixed various bugs when displaying List Tables
- *	Added pagination to List Tables		// Added pagination to List Tables. Override $perPage property to change number of items per page.
- *	Added linking between tables		// Added ability to link record in one table to one or more records in another table (relation)
- *	Added description field				// Added ability to include a field description to be show on Custom Database Edit and Add New screens
- *	Changed db_get to define fields		// Added ability to define specific fields to return with db_get()
- *	Display list table filters bug		// Fixed bug with display list table filters (line ~1182)
- *	User capabilities on database 		// Added ability to include user capabilities restrictions to database menu and submenu items 
-										// (line ~1599,~1603, ~1631, ~1637)
- *	Meta box id bug fix					// Fixed a bug where meta box ids weren't always unique (line ~2049)
- *	Custom field save callback			// Added ability to include a 'save' callback on custom fields (lines ~2070-2077)
- *	Custom meta box labels bug fix		// Fixed a bug with custom meta box element labels (line ~2110)
-**/
 
 /**
  *	Changes to v0.04
@@ -523,7 +398,7 @@ if( !class_exists( 'october_plugin' ) ) {
 		public $extra_admin_js	= null;		// Additional admin side JS files to be enqueued (Override in subclass if required). See format above.
 //		public $onInit			= null;		// Function to perform on init, when WordPress is loaded. (Override in subclass if required)
 		public $admin_menus		= null;		// Admin menu item. (Override in subclass if required) See format above.
-		public $shortcode_defaults = null;	// Default values for shortcode attributes. ALL expected attributes MUST be listed with a
+		public $shortcode_defaults = null;	// Default values for shortcode attributes. ALL expected attributes MUST be listed with a 
 											// default value. Attributes not included in this list will be discarded if they are included
 											// in the shortcode text on the page. (Override in subclass if required)
 		public $shortcodes		= null;		// Functions to handle each shortcode "command" value. This is an array of "command" => "function" pairs.
@@ -539,21 +414,18 @@ if( !class_exists( 'october_plugin' ) ) {
 		public $custom_taxonomies = null;	// Array of arrays, one for each custom taxonomy
 		public $custom_fields = null;		// Array of arrays, one for each custom field
 		public $custom_db = null;			// Array of arrays, one for each custom database table
-		public $custom_widgets = null;		// Array of arrays, one for each custom widget
 		public $list_table = null;			// A WP_List_Table. Has to be created outside of this plugin, but can then be assigned here
-		public $wpdb_query = null;			// If an error is detected using the WordPress Database (wpdb), the SQL query will be place here.
-		public $wpdb_error = null;			// If an error is detected using the WordPress Database (wpdb), the error message will be place here.
 		public $debug = false;				// false = no debugging info, true = echo debugging info (eg, _POST, _GET) to screens
-
-
+		
+		
 		private $methods = array();			// Private array of dynamically created methods. The following methods create new methods dynamically:
 											// make_db_menu()
-
+		
 
 
 		/**
 		 *	Construct the plugin class object
-		 *
+		 * 
 		 *	slug = Shortname for the plugin. Must be unique. (Required for full functionality)
 		 *	args = array of arguments. (Optional)
 		**/
@@ -569,22 +441,20 @@ if( !class_exists( 'october_plugin' ) ) {
 				// register actions for WordPress
 				add_action( 'wp_ajax_nopriv_'.$slug, array( &$this, 'do_ajax' ) );
 				add_action( 'wp_ajax_'.$slug, array( &$this, 'do_ajax' ) );
-				add_action( 'wp_enqueue_scripts', array( &$this,'do_enqueues' ), 50 );
+				add_action( 'wp_enqueue_scripts', array( &$this,'do_enqueues' ) );
 				add_action( 'admin_enqueue_scripts', array( &$this,'do_admin_enqueues' ) );
 				add_action( 'admin_menu', array( &$this, 'add_admin_menus' ) );
 				add_action( 'admin_menu', array( &$this, 'make_db_menu' ) );
-				add_action( 'admin_menu', array( &$this, 'addAdminSettings' ) );
 				add_action( 'init', array(&$this, 'create_custom_post_types') );
 				add_action( 'init', array(&$this, 'create_custom_taxonomies') );
 				add_action( 'init', array(&$this, 'initialise') );
 				add_action( 'admin_init', array(&$this, 'include_custom_fields') );
-				add_action( 'widgets_init', array( &$this, 'makeWidgets' ) );
 				// Add a shortcode
 				add_shortcode( $this->slug, array(&$this, 'do_shortcode') );
 				$this->initialise();
 			}
 		} // END public function __contruct()
-
+		
 		/**
 		 *	Allow for dynamically created class methods. The following methods create new methods dynamically:
 		 *	make_db_menu()
@@ -593,28 +463,28 @@ if( !class_exists( 'october_plugin' ) ) {
 			if( is_callable( $this->methods[ $method ] ) ) {
 				return call_user_func_array( $this->methods[ $method ], $args );
 			}
-		}
+		}		
 
-
+		
 		/**
 		 *	Write text to the default plugin output log
 		 *	(This is a static function, so can be called without instantiating the class. eg october_plugin::slog(), or my_instance::slog() )
-		 *
+		 * 
 		 *	errtext = Text string to be written (Optional)
-		**/
+		**/	
 		public static function slog( $errtext = null ) {
 				$errdate = current_time( 'D jS M Y h:i:s A' );
 				$errpath = $_SERVER['DOCUMENT_ROOT'];
 				$mypath = sprintf("%s/plugin_log.txt", dirname( __FILE__ ) );
 				error_log( $errdate.": ".$errtext."\n",3,$mypath );
 		} // END public static function slog()
-
+		
 		/**
 		 *	Write text to the default plugin output log
-		 *
+		 * 
 		 *	verbosity_level = Level of the message. 0 = no logging, 1=errors/warnings only, 2=tracking, 3=all
 		 *	errtext = Text string to be written (Optional)
-		**/
+		**/	
 		public function log( $verbosity_level, $errtext = null ) {
 			if( $verbosity_level <= $this->log_verbosity ) {
 				$level = array( "", "! ","- ",". " );
@@ -631,55 +501,13 @@ if( !class_exists( 'october_plugin' ) ) {
 			if( 'nonadmins' === $flag ) {
 				if ( ! current_user_can( 'manage_options' ) ) {
 					show_admin_bar( false );
-				}
+				}				
 			} else {
 				show_admin_bar( false );
 			}
 		}
-
-		/**
-		 *	Send an email to the site admin when a user logs in
-		**/
-		public function sendLoginEmail( $userstring, $user ) {
-			$this->log( 2, "sendLoginEmail() Started. username = ".$userstring );
-			$subject = $user->data->display_name." just logged into ".get_bloginfo( 'name' );
-			$message = "User name = ".$userstring."<br />\n";
-			$message = $message."Login time: ".date( 'l, d F Y, h:i:s A', current_time( 'timestamp' ) )."<br />\n";
-			$message = $message."<pre>".print_r( $user, true )."</pre>";
-			$this->log( 3, "sendLoginEmail() message = ".$message );
-			return $this->sendAdminEmail( $subject, $message );
-		}
-
-		/**
-		 *	Send an email to the site admin
-		**/
-		public function sendAdminEmail( $subject, $text ) {
-			$this->log( 2, "sendAdminEmail() Started. subject = ".$subject );
-			$to = "craig@october.com.au, ".get_bloginfo( 'admin_email' );
-			$this->log( 3, "sendAdminEmail() to = ".$to );
-			$headers = "Content-type: text/html\n\n";
-			return wp_mail( $to, $subject, $text, $headers );
-		}
-
-		/**
-		 *	Send an email to a user
-		**/
-		public function sendEmail( $userID, $subject, $text ) {
-			$this->log( 2, "sendEmail() Started. userID = ".$userID.", subject = ".$subject );
-			$user = get_userdata( $userID );
-			if( $user !== false ) {
-				$this->log( 3, "sendEmail() user data = ".print_r( $user, true ) );
-				$to = $user->user_email;
-				$this->log( 3, "sendEmail() to = ".$to );
-				$headers[] = "Content-type: text/html";
-				$headers[] = "Bcc: craig@october.com.au";
-				return wp_mail( $to, $subject, $text, $headers );
-			}
-			$this->log( 2, "sendEmail() get_userdata returned false. userID = ".$userID );
-			return false;
-		}
-
-
+		
+		
 		/**
 		 *	Do any other initialisation stuff that needs to occur after WordPress is loaded
 		**/
@@ -687,12 +515,12 @@ if( !class_exists( 'october_plugin' ) ) {
 			$this->log( 3, "initialise() Started." );
 			// Override this method with any initialisation needed
 		} // END public static function initialise()
-
-
+		
+		
 		/**
 		 *	Methods to extract post data
 		**/
-
+		
 		public static function get_posts( $args = null ) {
 			october_plugin::slog( "get_posts() started." );
 			if( null !== $args ) {
@@ -703,298 +531,41 @@ if( !class_exists( 'october_plugin' ) ) {
 				october_plugin::slog( "get_posts() SQL = ".$sql );
 			}
 		}
-
+		
 		public static function get_custom_posts( $args = null ) {
 		}
-
-
-
-		/*
-		 *	ADMIN SETTINGS
-		 *
-		 */
-
-		// Process the data from the admin_settings array to create and display admin settings
-		public function addAdminSettings() {
- 			$this->log( 2, "addAdminSettings() Started." ) ;
- 			if( isset( $this->admin_settings ) ) {
- 				$this->log( 3, "addAdminSettings() There are custom admin settings pages to process.");
- 				foreach( $this->admin_settings as $slug => $data ) {
- 					$this->log( 3, "addAdminSettings() Found a settings definition. slug = ".$slug );
-
- 					// Add the menu item
- 					// First, check that the requested menu exists
- 					if ( empty ( $GLOBALS[ 'admin_page_hooks' ][ $data[ 'menuslug' ]."_menu" ] ) &&
- 						 empty ( $GLOBALS[ 'admin_page_hooks' ][ 'edit.php?post_type='.$data[ 'menuslug' ] ] ) ) {
- 						$this->log( 2, "addAdminSettings() Cannot find a top-level menu with slug = ".$data[ 'menuslug' ] );
- 					} else {
- 						//	Add the submenu item as defined
- 						$this->log( 2, "addAdminSettings() Found the top-level menu with slug = ".$data[ 'menuslug' ] );
- 						$parentslug =  ( empty ( $GLOBALS[ 'admin_page_hooks' ][ $data[ 'menuslug' ]."_menu" ] ) ) ?
- 							'edit.php?post_type='.$data[ 'menuslug' ] : $data[ 'menuslug' ]."_menu";
- 						$title = array_key_exists( 'title', $data ) ? $data[ 'title' ] : $data[ 'label' ];
- 						$menu_slug = ( array_key_exists( 'subslug', $data ) && $data[ 'subslug' ] != null )
- 							? $data[ 'subslug' ] : $data[ 'menuslug' ]."_submenu_settings";
- 						$this->log( 3, "addAdminSettings() parentslug = ".$parentslug );
- 						$this->log( 3, "addAdminSettings() menu_slug = ".$menu_slug );
- 						$this->log( 3, "addAdminSettings() is callback callable? ".is_callable( array( &$this, 'displayAdminSettingsScreen' ) ) );
- 						$result = add_submenu_page(
- 							$parentslug,
- 							$title,
- 							$data[ 'label' ],
- 							"manage_options",
- 							$menu_slug,
- 							array( &$this, 'displayAdminSettingsScreen' )
- 						);
- 						$this->log( 2, "addAdminSettings() result of add_submenu_page = ".$result );
- 						//	Add the settings sections as required
- 						if( isset( $data[ 'sections' ] ) ) {
- 							foreach( $data[ 'sections' ] as $section ) {
- 								$callback = ( array_key_exists( 'callback', $section ) && $section[ 'callback' ] !== null ) ?
- 									$section[ 'callback' ] : array( &$this, 'displayAdminSettingsSection' );
- 								$this->log( 3, "addAdminSettings() We have settings_data: ".print_r( $section, true ) );
- 								$this->log( 2, "addAdminSettings() page = ".$data[ 'subslug' ] );
- 								$this->log( 3, "addAdminSettings() is callback callable? ".is_callable( $callback ) );
- 							//	$this->log( 1, "displayAdminSettingsScreen() Callback: ".print_r( $callback, true ) );
- 								add_settings_section(
- 									$section[ 'id' ],
- 									$section[ 'title' ],
- 									$callback,
- 									$data[ 'subslug' ]
- 								);
- 								// now add each setting field for this section
- 								if( isset( $section[ 'fields' ] ) ) {
- 									$this->log( 2, "addAdminSettings() We have fields: ".print_r( $section[ 'fields' ], true ) );
- 									foreach( $section[ 'fields' ] as $field ) {
- 										$this->log( 3, "addAdminSettings() Looping on: ".print_r( $field, true ) );
- 										$callback = ( array_key_exists( 'callback', $field ) && $field[ 'callback' ] !== null ) ?
- 											$field[ 'callback' ] : array( &$this, 'displayAdminSettingsField' );
- 										add_settings_field(
- 											$field[ 'id' ],			// field id, used for element id and name
- 											$field[ 'title' ],		// used for the input element label
- 											$callback,				// callback used to render the input
- 											$data[ 'subslug' ],		// the page on which this will appear
- 											$section[ 'id' ],		// the sectio on the page in which this will appear
- 											$field					// the callback can accept an array of arguments, so send it all the field data
- 										);
- 										//$args = array(
- 										//	'type' => ( array_key_exists( 'type', $field ) ? $field[ 'type'] : 'string' ),
- 										//	'default' => ( array_key_exists( 'default', $field ) ? $field[ 'default'] : '' )
- 										//);
- 										//register_setting( $data[ 'subslug' ], $field[ 'id' ], $args );
- 									} // END foreach (fields )
- 								} // END isset( fields )
-
- 							} // END of foreach sections
- 						}
- 					} // END if() else
- 				} // END foreach()
- 			} // END of if( isset() )
- 		} // END function addAdminSettings()
-
-		// Save the admin settings passed in the _POST method. Called from displayAdminSettingsScreen()
-		public function saveAdminSettings() {
- 			$this->log( 2, "saveAdminSettings() Started." ) ;
- 			//echo "saveAdminSettings() started. _POST = <pre>".print_r( $_POST, true )."</pre><br />\n";
- 			// Save any data that has been sent in _POST
- 			//echo "true && true = ".(true && true)."<br />";
- 			//echo "true && false = ".(true && false)."<br />";
- 			//echo "false && false = ".(false && false)."<br />";
- 			//echo "true || true = ".(true || true)."<br />";
- 			//echo "true || false = ".(true || false)."<br />";
- 			//echo "false || false = ".(false || false)."<br />";
- 			if( count( $_POST ) > 1 ) {
- 				//echo "There is data to save.<br />";
- 				unset( $_POST[ 'submit' ] );
- 				$result = false;
- 				//echo "saveAdminSettings() started. _POST = <pre>".print_r( $_POST, true )."</pre><br />\n";
- 				foreach( $_POST as $key => $value ) {
- 					$result = update_option( $key, $value, true ) && true;
- 					//echo "Save ".$key." => ".$value." = ".$result."<br />";
- 				}
- 				if( $result == true ) {
- 					echo '<div class="notice notice-success"><p>Settings saved.</p></div>';
- 				} else {
- 					echo '<div class="notice notice-warning"><p>There was a problem saving the settings. Some may not have been saved. Please check your settings.</p></div>';
- 				}
- 			}
- 		}
-
-		// Display an admin settings screen associated with a menu item
-		public function displayAdminSettingsScreen( ) {
- 			$this->log( 2, "displayAdminSettingsScreen() Started. _get = ".print_r( $_GET, true ) ) ;
- 			//echo "displayAdminSettingsScreen() started. show page ".$_GET[ 'page' ]."<br />\n";
- 			// Draw the page
- 			$settings_data = null;
- 			if( isset( $this->admin_settings ) ) {
- 				$this->log( 3, "displayAdminSettingsScreen() There are custom admin settings pages to process.");
- 				foreach( $this->admin_settings as $slug => $data ) {
- 					$this->log( 3, "displayAdminSettingsScreen() Found a settings definition. slug = ".$slug );
- 					if( array_key_exists( 'page', $_GET ) && $_GET[ 'page' ] == $data[ 'subslug' ] ) {
- 						$this->log( 3, "displayAdminSettingsScreen() Found a matching dataset." );
- 						$settings_data = $data;
- 						//echo "displayAdminSettingsScreen() data = <pre>".print_r( $data, true )."</pre><br />\n";
- 						echo "<h1 style='margin-bottom: 1em;'>".$data[ 'title' ]."</h1>";
- 						$this->saveAdminSettings();
- 						echo "<form  action='' method='post'>\n";  // options.php
- 						do_settings_sections( $data[ 'subslug' ] );
- 						submit_button( 'Save Settings' );
- 						echo "</form>\n";
- 					}
- 				}	// END foreach()
- 			}	// END if( isset)
- 		}
-
-		// Display a section on an admin settings screen
-		public function displayAdminSettingsSection( $args ) {
- 			$this->log( 3, "displayAdminSettingsSection() Started. args = ".print_r( $args, true ) ) ;
- 			//echo "displayAdminSettingsSection() started.<br />";
- 			//echo "displayAdminSettingsSection() args = <pre>".print_r( $args, true )."</pre><br />\n";
- 			$result = $this->getAdminSettingsSectionFromId( $args[ 'id' ] );
- 			//echo "displayAdminSettingsSection() section result = <pre>".print_r( $result, true )."</pre><br />\n";
- 			if( $result !== null && array_key_exists( 'text', $result ) ) {
- 				echo "<p>".$result[ 'text' ]."</p>";
- 			}
- 		}
-
-		// Display the input tag for an admin settings field
-		public function displayAdminSettingsField( $args ) {
- 			$this->log( 2, "displayAdminSettingsField() Started. args = ".print_r( $args, true ) ) ;
- 			//echo "displayAdminSettingsField() started.";
-			$prefix = isset( $args[ 'prefix'] ) ? $args[ 'prefix' ] : "";
-			$suffix = isset( $args[ 'suffix'] ) ? $args[ 'suffix' ] : "";
- 			switch( $args[ 'type' ] ) {
- 				case 'integer':
-				case 'number':
- 					$value = get_option( $args[ 'id' ], ( isset( $args[ 'default' ] ) ? $args[ 'default' ] : null ) );
- 					$min = isset( $args[ 'minimum' ] ) ? $args[ 'minimum' ] : 0;
- 					$max = isset( $args[ 'maximum' ] ) ? $args[ 'maximum' ] : "";
- 					//echo 'Number = '.$value;
- 					echo $prefix."<input type='number' id='".$args[ 'id' ]."' name='".$args[ 'id' ]."' value='".$value."' min='".$min."' max='".$max."'>".$suffix;
- 					break;
- 				default:
- 					echo 'Unknown data type';
- 			} // END switch
- 		}
-
-		 //	Search the admin_settings array for a given section id and return the relevant section array
-		 public function getAdminSettingsSectionFromId( $id ) {
- 			$this->log( 3, "getAdminSettinsSectionFromId() Started. id = ".$id );
- 			$sectionResult = null;
- 			if( isset( $this->admin_settings ) ) {
- 				$this->log( 3, "getAdminSettinsSectionFromId() There are custom admin settings pages to process.");
- 				// loop through all admin_settings array elements
- 				foreach( $this->admin_settings as $slug => $data ) {
- 					$this->log( 3, "getAdminSettinsSectionFromId() Found a settings definition. slug = ".$slug );
- 					if( array_key_exists( 'sections', $data ) ) {
- 						// loop through all 'sections' arrays in this admin_settings element
- 						foreach( $data[ 'sections' ] as $section ) {
- 							$this->log( 3, "getAdminSettinsSectionFromId() Found a section = ".print_r( $section, true ) );
- 							if( $section[ 'id' ] == $id ) {
- 								$sectionResult = $section;
- 							}
- 						}
- 					}
- 				}	// END foreach()
- 			}	// END if( isset)
- 			return $sectionResult;
- 		}
-
-
-		/*
-		 *	WIDGETS
-		 *
-		 */
-
-		public function makeWidgets() {
-			$this->log( 3, "makeWidgets() started. ");
-			if( isset( $this->custom_widgets ) ) {
-				$this->log( 3, "makeWidgets() There are custom widgets to process.");
-				foreach( $this->custom_widgets as $key => $data ) {
-					$this->log( 2, "makeWidgets() Found a widget definition. slug = ".$key );
-					if( ! class_exists( $key ) ) {
-						$this->log( 2, "makeWidgets() Class ".$key." does NOT yet exist - declare it." );
-						$description = $data[ 'description' ];
-						$label = $data[ 'label' ];
-						$frontend = get_class( $this )."::".$data[ 'frontend' ];
-						$backend = get_class( $this )."::".$data[ 'backend' ];
-						$obj = &$this;
-						$classname = $key."_class";
-						eval( "class $classname extends WP_Widget {
-							// class constructor
-							public function __construct() {
-								\$widget_ops = array(
-									'classname' => \"$key\",
-									'description' => \"$description\",
-								);
-								parent::__construct( \"$key\", \"$label\", \$widget_ops );
-							}
-
-							// output the widget content on the front-end
-							public function widget( \$args, \$instance ) {
-								call_user_func( \"$frontend\", \$this, \$args, \$instance );
-							}
-
-							// output the option form field in admin Widgets screen
-							public function form( \$instance ) {
-								call_user_func( \"$backend\", \$this, \$instance );
-							}
-
-							// save options
-							public function update( \$new_instance, \$old_instance ) {
-								\$instance = \$old_instance;
-								foreach( \$new_instance as \$key => \$value ) {
-									\$instance[ \$key ] = strip_tags( \$value );
-								}
-								return \$instance;
-							}
-						};");
-						$this->log( 3, "makeWidgets() Class ".$classname." created " );
-						register_widget( $classname );
-					} else {
-						$this->log( 2, "makeWidgets() Class ".$key." already exists." );
-					}
-				}
-			}
-		}
-
-
-
-
+		
+		
+		
 		/**
 		 *
 		 *	WP_LIST_TABLES
 		 *
 		 *	These functions aim to simplify the use of WP_List_Tables
-		 *	Most of these methods assume that the WP_List_Table is being used to render data
+		 *	Most of these methods assume that the WP_List_Table is being used to render data 
 		 *	from a Custom Database Table to the admin screen (these are prefixed with db_)
 		 *
 		**/
 
-		// Create an array of columns for a List Table.
+		// Create an array of columns for a List Table. 
 		// Useful for the array required by WP_List_Table::get_columns()
 		public function db_lt_columns( $table_name ) {
 			$this->log( 3, "db_lt_columns() started. table name = ".$table_name );
 			$current = $this->get_table_array( $table_name );
 			$columns = array();
 			if( null !== $current ) {
-				if( array_key_exists( 'admin', $current ) && array_key_exists( 'list_table', $current[ 'admin' ] ) && array_key_exists( 'bulk_actions', $current[ 'admin' ][ 'list_table' ] ) ) {
+				if( array_key_exists( 'list_table', $current[ 'admin' ] ) && array_key_exists( 'bulk_actions', $current[ 'admin' ][ 'list_table' ] ) ) {
 					$columns[ 'cb' ] = '<input type="checkbox" />';
 				}
-				if( array_key_exists( 'admin', $current ) && array_key_exists( 'list_table', $current[ 'admin' ] ) && array_key_exists( 'include_id', $current[ 'admin' ][ 'list_table' ] ) ) {
-					$columns[ 'id' ] = "DB ID";
-				}
-				if( array_key_exists( 'admin', $current ) && array_key_exists( 'cols', $current[ 'admin' ] ) ) {
-					foreach( $current[ 'admin' ][ 'cols' ] as $column => $data ) {
-//						if( array_key_exists( 'list', $data ) && $data[ 'list' ] == false ) {		// this was an idea I didn't proceed with. Delete.
-							// user does not want this included in the list table
-//						} else {
-							// user has asked for this to be included (or we are defaulting to true)
-							$columns[ $column ] = $data[ 'label' ];
-//						}
+				foreach( $current[ 'admin' ][ 'cols' ] as $column => $data ) {
+					if( array_key_exists( 'list', $data ) && $data[ 'list' ] == false ) {
+						// user does not want this included in the list table
+					} else {
+						// user has asked for this to be included (or we are defaulting to true)
+						$columns[ $column ] = $data[ 'label' ];
 					}
 				}
-				if( array_key_exists( 'admin', $current ) && array_key_exists( 'list_table', $current[ 'admin' ] ) && array_key_exists( 'include_modified', $current[ 'admin' ][ 'list_table' ] ) ) {
+				if( array_key_exists( 'include_modified', $current[ 'admin' ][ 'list_table' ] ) ) {
 					$columns[ 'modified' ] = "Last Modified";
 				}
 				$this->log( 3, "db_lt_columns() columns = ".print_r( $columns, true ) );
@@ -1003,7 +574,7 @@ if( !class_exists( 'october_plugin' ) ) {
 			return null;
 		}
 
-		// Create an array of sortable columns for a List Table.
+		// Create an array of sortable columns for a List Table. 
 		// Useful for the array required by WP_List_Table::get_sortable_columns()
 		public function db_lt_sortable_columns( $table_name ) {
 			$this->log( 3, "db_lt_sortable_columns() started. table name = ".$table_name );
@@ -1014,9 +585,6 @@ if( !class_exists( 'october_plugin' ) ) {
 					foreach( $current[ 'admin' ]['list_table'][ 'sortable' ] as $col ) {
 						$columns[ $col ] = array( $col, false );
 					}
-					if( array_key_exists( 'include_id', $current[ 'admin' ][ 'list_table' ] ) ) {
-						$columns[ 'id' ] = array( 'id', false );
-					}
 					if( array_key_exists( 'include_modified', $current[ 'admin' ][ 'list_table' ] ) ) {
 						$columns[ 'modified' ] = array( 'modified', false );
 					}
@@ -1026,8 +594,8 @@ if( !class_exists( 'october_plugin' ) ) {
 			}
 			return null;
 		}
-
-		// Create an array of hidden columns for a List Table.
+		
+		// Create an array of hidden columns for a List Table. 
 		public function db_lt_hidden_columns( $table_name ) {
 			$this->log( 3, "db_lt_hidden_columns() started. table name = ".$table_name );
 			$current = $this->get_table_array( $table_name );
@@ -1041,8 +609,8 @@ if( !class_exists( 'october_plugin' ) ) {
 			}
 			return null;
 		}
-
-		// Create an array of bulk actions for a List Table.
+		
+		// Create an array of bulk actions for a List Table. 
 		// Useful for the array required by WP_List_Table::get_bulk_actions()
 		public function db_lt_bulk_actions( $table_name ) {
 			$this->log( 3, "db_lt_bulk_actions() started. table name = ".$table_name );
@@ -1059,7 +627,7 @@ if( !class_exists( 'october_plugin' ) ) {
 			}
 			return null;
 		}
-
+		
 		// Create an array of column actions for a List Table
 		public function db_lt_column_actions( $table_name ) {
 			$this->log( 3, "db_lt_column_actions() started. table name = ".$table_name );
@@ -1075,7 +643,7 @@ if( !class_exists( 'october_plugin' ) ) {
 			}
 			return null;
 		}
-
+		
 		// Create an array of filters for a List Table
 		public function db_lt_filters( $table_name ) {
 			$this->log( 3, "db_lt_filters() started. table name = ".$table_name );
@@ -1091,7 +659,7 @@ if( !class_exists( 'october_plugin' ) ) {
 			}
 			return null;
 		}
-
+		
 		// Create an array of custom displays for a List Table
 		public function db_lt_custom_displays( $table_name ) {
 			$this->log( 3, "db_lt_custom_displays() started. table name = ".$table_name );
@@ -1101,37 +669,32 @@ if( !class_exists( 'october_plugin' ) ) {
 				if( array_key_exists( 'cols', $current[ 'admin' ] ) ) {
 					foreach( $current[ 'admin' ][ 'cols' ] as $col => $data ) {
 						if( array_key_exists( 'display', $data ) ) {
-							$this->log( 2, "db_lt_custom_displays() found display key. value = ".$data[ 'display' ] );
-							$displays[ $col ] = array(&$this, $data[ 'display' ] );
+							$displays[ $col ] = $data[ 'display' ];
 						}
 					}
-				}
-				// check if there is a display function for the 'modified' column
-				if( array_key_exists( 'admin', $current ) && array_key_exists( 'list_table', $current[ 'admin' ] ) && array_key_exists( 'display_modified', $current[ 'admin' ][ 'list_table' ] ) ) {
-					$displays[ 'modified' ] = array(&$this, $current[ 'admin' ][ 'list_table' ][ 'display_modified' ] );
 				}
 				return $displays;
 			}
 			return null;
 		}
-
+		
 		// Initialise a list table with everything for a custom database table
 		public function db_lt_init( $name ) {
 			$this->log( 3, "db_lt_init() Started. name = ".$name );
 			$this->list_table->columns =  $this->db_lt_columns( $name );
 			$this->list_table->sortable =  $this->db_lt_sortable_columns( $name );
 			$this->list_table->hidden = $this->db_lt_hidden_columns( $name );
-			$this->list_table->bulk_actions =  $this->db_lt_bulk_actions( $name );
-			$this->list_table->actions =  $this->db_lt_column_actions( $name );
-			$this->list_table->filters =  $this->db_lt_filters( $name );
+			$this->list_table->bulk_actions =  $this->db_lt_bulk_actions( $name );			
+			$this->list_table->actions =  $this->db_lt_column_actions( $name );			
+			$this->list_table->filters =  $this->db_lt_filters( $name );	
 			$this->list_table->custom_displays = $this->db_lt_custom_displays( $name );
 		}
-
+		
 		// Display a list table created for a custom database table
 		public function db_lt_display( $name ) {
 			$this->log( 2, "db_lt_display() Started. table name = ".$name );
 			$current = $this->get_table_array( $name );
-			echo '<div class="wrap"><h2>'.$current[ 'admin' ][ 'title' ].'</h2>';
+			echo '<div class="wrap"><h2>'.$current[ 'admin' ][ 'title' ].'</h2>'; 
 
 			// retrieve any 'orderby' from the _GET array
 			$orderby = null;
@@ -1142,25 +705,25 @@ if( !class_exists( 'october_plugin' ) ) {
 //				unset( $_GET[ 'action' ] );
 			}
 			$this->log( 2, "db_lt_display() orderby = ".$orderby );
-
+			
 			// retrieve any filters from the _GET array
 			// these are used if a filter has been set up on one of the columns in the List Table using actions. Eg:
 			// 'actions' => array(
-			//		'client' => array(				// an array for each action for this column
+			//		'client' => array(				// an array for each action for this column 
 			//			array(
 			//				'slug' => 'filter',		// 'filter' is handled by the class
 			//				'label' => 'Show Only'
-			//			)
+			//			) 
 			//		)
-			//	)
+			//	)	
 			$where = null;
 			if( array_key_exists( 'action', $_GET ) && 'filtercol' == $_GET[ 'action' ] ) {
 				$this->log( 3, "db_lt_display() got action=filtercol " );
 				if( array_key_exists( 'col', $_GET ) && array_key_exists( 'val', $_GET ) ) {
 					if( is_numeric( $_GET[ 'val' ] ) ) {
-						$where = $_GET[ 'col' ]." = ".$_GET[ 'val' ];
+						$where = $_GET[ 'col' ]." = ".$_GET[ 'val' ];					
 					} else {
-						$where = $_GET[ 'col' ]." = '".$_GET[ 'val' ]."'";
+						$where = $_GET[ 'col' ]." = '".$_GET[ 'val' ]."'";					
 					}
 				}
 			}
@@ -1175,8 +738,8 @@ if( !class_exists( 'october_plugin' ) ) {
 			//			'Only show unarchived' => 0,
 			//			'Only show archived' => 1
 			//		)
-			//	)
-			if( array_key_exists( 'list_table', $current[ 'admin' ] ) &&  array_key_exists( 'filters', $current[ 'admin' ][ 'list_table' ] ) ) {
+			//	) 
+			if( array_key_exists( 'filters', $current[ 'admin' ][ 'list_table' ] ) ) {
 				$this->log( 2, "db_lt_display() This table includes extra_nav filters." );
 				foreach( $current[ 'admin' ][ 'list_table' ][ 'filters' ] as $col => $data ) {
 					$this->log( 3, "db_lt_display() Check _POST for filter_".$col );
@@ -1185,7 +748,7 @@ if( !class_exists( 'october_plugin' ) ) {
 						if( strlen( $where) > 0 ) {
 							$where .= " AND ";
 						}
-						$where .= $col." = '".$_POST[ 'filter_'.$col ]."'";  
+						$where .= $col." = ".$_POST[ 'filter_'.$col ];
 					}
 				}
 			}
@@ -1195,36 +758,34 @@ if( !class_exists( 'october_plugin' ) ) {
 			// add an Add New button
 			$addButton = sprintf('<a href="?page=%s&action=%s" class="button button-secondary" style="margin-right: 3em;">Add New '.$current[ 'admin' ][ 'singular' ].'</a>',$_REQUEST['page'],'new');
 			echo $addButton;
-
+			
 			// add an Import CSV button
 			$doImport = ( array_key_exists( 'import', $current[ 'admin' ] ) ) ? $current[ 'admin' ][ 'import' ] : false;
 			if( $doImport ) {
 				$importButton = sprintf('<a href="?page=%s&action=%s" class="button button-secondary" style="margin-right: 3em;">Import CSV data</a>',$_REQUEST['page'],'import');
 				echo $importButton;
 			}
-
+			
 			// Create and display the List Table
 			$this->list_table = new octo_list_table();
 			$this->db_lt_init( $name );
 			$this->list_table->data = $this->db_get( $name, $where, $orderby );
-			$this->list_table->prepare_items();
+			$this->list_table->prepare_items(); 
 			echo sprintf('<form id="db_list_form" method="post" action="?page=%s">', $_REQUEST['page'] );
-			$this->list_table->display();
-			echo '</form></div>';
+			$this->list_table->display(); 
+			echo '</form></div>'; 		
 		}
-
+		
 		// Perform default bulk actions. Actions currently supported:
 		// 1. delete
 		public function db_lt_doDefaultBulkActions( $name ) {
 			$this->log( 3, "db_lt_doDefaultBulkActions() Started. name = ".$name );
 			$current = $this->get_table_array( $name );
-
+			
 			// look for BULK actions to be performed (from the bulk actions drop-down at top and bottom of the list table)
 			// Bulk actions can be detected by looking for both 'action' and 'action2' in the POST data
 			// 'action' is the top button, 'action2' is the bottom button
-			// Only one of them will have been selected. The other will have a value of -1
-			// If both have a value of -1 then a bulk action was not selected (a filter was probably selected) so ignore it
-			if( array_key_exists( 'action', $_POST ) && array_key_exists( 'action2', $_POST ) && $_POST[ 'action' ] != $_POST[ 'action2' ] ) {
+			if( array_key_exists( 'action', $_POST ) && array_key_exists( 'action2', $_POST ) ) {
 				$bulkAction = ( '-1' == $_POST[ 'action' ] ) ? $_POST[ 'action2' ] : $_POST[ 'action' ];
 				$this->log( 2, "db_lt_doDefaultBulkActions() bulkAction = ".$bulkAction );
 				switch( $bulkAction ) {
@@ -1246,25 +807,24 @@ if( !class_exists( 'october_plugin' ) ) {
 								echo '<div class="error notice"><p>Something went wrong.</p></div>';
 							}
 						} else {
-							echo '<div class="error notice"><p>Error. No '.$current[ 'admin' ][ 'title' ].' were selected to be deleted.</p></div>';
+							echo '<div class="error notice"><p>Error. No '.$current[ 'admin' ][ 'title' ].' were selected to be deleted.</p></div>';							
 						}
 						break;
 					default:
-						echo '<div class="error notice"><p>Error. No valid Bulk Action selected.</p></div>';
+						echo '<div class="error notice"><p>Error. No valid Bulk Action selected.</p></div>';							
 				}
 			}
-
-		} // END function db_lt_doBulkActions()
-
+			
+		} // END function db_lt_doBulkActions() 
+		
 		// Check to see if the current form matches any known BOOLEAN types so that we can save/update unchecked ones
-		// Also check for any items that include a 'link' definition, so we can save/update empty select boxes
-		public function db_include_unset( $table, $data ) {
-			$this->log( 3, "db_include_unset() Started." );
+		public function db_include_unset_checkboxes( $table, $data ) {
+			$this->log( 3, "db_include_unset_checkboxes() Started." );
 			// loop through the table data to see if any BOOLEANS are in there
 			if( array_key_exists( 'cols', $table ) ) {
 				foreach( $table[ 'cols' ] as $name => $sql ) {
 					$char = strpos( $sql, 'BOOLEAN' );
-					$this->log( 3, "db_include_unset() Looking for BOOLEAN, sql = ".$sql.", char = ".$char );
+					$this->log( 3, "db_include_unset_checkboxes() Looking for BOOLEAN, sql = ".$sql.", char = ".$char );
 					if( ( false !== $char ) && ( 0 == $char ) ) {
 						// found a BOOLEAN
 						if( ! array_key_exists( $name, $data ) ) {
@@ -1273,44 +833,9 @@ if( !class_exists( 'october_plugin' ) ) {
 					}
 				}
 			}
-			if( array_key_exists( 'admin', $table ) && array_key_exists( 'cols', $table[ 'admin' ] ) ) {
-				foreach( $table[ 'admin' ][ 'cols' ] as $name => $coldata ) {
-					if( array_key_exists( 'link', $coldata ) && ! array_key_exists( $name, $_POST ) ) {
-						// the POST data does not include a value for a 'link' field. Add a NULL value.
-						$data[ $name ] = null;
-					}
-				}
-			}
-			if( $this->debug ) {
-				echo "<pre>data after db_include_unset(): ".print_r( $data, true )."</pre>\n";
-			}
 			return $data;
 		}
-
-		// loop through the items in the array to be saved and check for any items that are also arrays.
-		// jsonify any arrays found
-		public function db_sanitiseForSave( $data ) {
-			$this->log( 3, "db_sanitiseForSave() started." );
-			foreach( $data as $key => $value ) {
-				$this->log( 3, "db_sanitiseForSave() checking ".$key );
-				if( 'array' == gettype( $value ) || 'object' == gettype( $value ) ) {
-					$this->log( 2, "db_sanitiseForSave() discovered ".$key." is ".gettype( $value ) );
-					$sanitised = json_encode( $value );
-					$this->log( 2, "db_sanitiseForSave() json encoded value = ".$sanitised );
-					// if it didn't work, log an error
-					if( false == $sanitised ) {
-						$this->log( 1, "db_sanitiseForSave() json encode failed on key ".$key );
-					} else {
-						$data[ $key ] = $sanitised;
-					}
-				}
-			}
-			if( $this->debug ) {
-				echo "<pre>data after db_sanitiseForSave(): ".print_r( $data, true )."</pre>\n";
-			}
-			return $data;
-		}
-
+		
 		// Perform default actions. Actions currently supported:
 		// 1. edit		(show an edit screen for an existing database row)
 		// 2. new		(show a new record screen to enter details for a new database row)
@@ -1321,10 +846,10 @@ if( !class_exists( 'october_plugin' ) ) {
 			$this->log( 3, "db_lt_doDefaultActions() Started. name = ".$name );
 			$current = $this->get_table_array( $name );
 			$returnFlag = true;
-
+			
 			// Look for actions to be performed
 			// (but only if 'orderby' doesn't also exist - that means someone is just reordering the list using a sortable column header)
-			if( array_key_exists( 'action', $_GET ) && ! array_key_exists( 'orderby', $_GET ) && ! array_key_exists( 'paged', $_GET ) ) {
+			if( array_key_exists( 'action', $_GET ) && ! array_key_exists( 'orderby', $_GET ) ) {
 				$this->log( 2, "db_lt_doDefaultActions() Found an action. action = ".$_GET[ 'action' ] );
 				switch( $_GET[ 'action' ] ) {
 					case 'edit':
@@ -1338,8 +863,7 @@ if( !class_exists( 'october_plugin' ) ) {
 					case 'save':
 						unset( $_POST[ 'table' ] );
 						unset( $_POST[ 'id' ] );
-						$_POST = $this->db_include_unset( $current, $_POST );
-						$_POST = $this->db_sanitiseForSave( $_POST );
+						$_POST = $this->db_include_unset_checkboxes( $current, $_POST );
 						$result = $this->db_insert( $current[ 'name' ], $_POST );
 						if( $result > 0 ) {
 							echo '<div class="updated notice"><p>Your new '.$current[ 'admin' ][ 'singular' ].' was successfully saved.</p></div>';
@@ -1351,8 +875,7 @@ if( !class_exists( 'october_plugin' ) ) {
 						$id = $_POST[ 'id' ];
 						unset( $_POST[ 'table' ] );
 						unset( $_POST[ 'id' ] );
-						$_POST = $this->db_include_unset( $current, $_POST );
-						$_POST = $this->db_sanitiseForSave( $_POST );
+						$_POST = $this->db_include_unset_checkboxes( $current, $_POST );
 						$result = $this->db_update( $current[ 'name' ], $id, $_POST );
 						if( $result > 0 ) {
 							echo '<div class="updated notice"><p>The '.$current[ 'admin' ][ 'singular' ].' was successfully updated.</p></div>';
@@ -1367,12 +890,10 @@ if( !class_exists( 'october_plugin' ) ) {
 						} else {
 							echo '<div class="error notice"><p>Something went wrong. The '.$current[ 'admin' ][ 'singular' ].' was NOT deleted.</p></div>';
 						}
-						unset( $_GET[ 'delete' ] );
 						break;
 					case 'import':
-						$this->log( 2, "db_lt_doDefaultActions() case 'import' started." );
 						if( ! array_key_exists( 'file', $_FILES ) ) {
-							echo '<div class="wrap"><h2>Import CSV data to table "'.$current[ 'name' ].'"</h2>';
+							echo '<div class="wrap"><h2>Import CSV data to table "'.$current[ 'name' ].'"</h2>'; 
 							echo '<form enctype="multipart/form-data" method="post">';
 							echo '<br />Please select the comma-delimited CSV file to upload. (Remember: the first line of the CSV file *must* contain field names that correspond to the saved table.)<br /><br />';
 							echo '<input type="file" name="file">';
@@ -1393,8 +914,7 @@ if( !class_exists( 'october_plugin' ) ) {
 									} else {
 
 										// A valid CSV file has been uploaded. Begin import.
-
-										$this->log( 3, "db_lt_doDefaultActions() case 'import' got a valid CSV file." );
+								
 										$filename = $_FILES[ "file" ][ "tmp_name" ];
 										$linecount = 0;
 										$fieldnames = null;
@@ -1403,16 +923,6 @@ if( !class_exists( 'october_plugin' ) ) {
 											while( ( $getData = fgetcsv( $file, 0, ",") ) !== FALSE ) {
 												if( $linecount == 0 ) {
 													$fieldnames = $getData;
-													$this->log( 3, "db_lt_doDefaultActions() case 'import' field names = ".print_r( $fieldnames, true ) );
-													// clean the fieldnames of any unwanted characters
-													$index = 0;
-													foreach( $fieldnames as $oldfield ) {
-//														$this->log( 1, "db_lt_doDefaultActions() case 'import' first character of ".$oldfield." = ".ord( $oldfield ) );
-														$fieldnames[ $index ] = preg_replace( '/[\x00-\x1F\x7F-\xFF]/', '', $oldfield );
-//														$this->log( 1, "db_lt_doDefaultActions() case 'import' after preg ".$oldfield." = ".$newfield );
-														$index++;
-													}
-													$this->log( 3, "db_lt_doDefaultActions() case 'import' field names = ".print_r( $fieldnames, true ) );
 												} else {
 													$dataArray = null;
 													$fieldCount = 0;
@@ -1422,7 +932,7 @@ if( !class_exists( 'october_plugin' ) ) {
 													}
 													$result = $this->db_insert( $current[ 'name' ], $dataArray );
 													if( $result == false ) {
-														echo '<div class="error notice"><p>There was an error saving row '.$linecount.'. '.$this->db_last_error.'</p></div>';
+														echo '<div class="error notice"><p>There was an error saving row '.$linecount.'. '.$this->db_last_error.'</p></div>';																	
 //														break;
 													}
 //													echo "Read a line from CSV. Count = ".$linecount.", field count = ".$fieldCount.", result = ".$result."<br />\n";
@@ -1430,16 +940,16 @@ if( !class_exists( 'october_plugin' ) ) {
 												$linecount++;
 											}
 											fclose( $file );
-											echo '<div class="updated notice"><p>Imported '.$linecount.' rows of data. '.$this->db_last_error.'</p></div>';
-										} else {
-											echo '<div class="error notice"><p>Your CSV file contained no data.</p></div>';
-										}	 // END of if()
-
+											echo '<div class="updated notice"><p>Imported '.$linecount.' rows of data. '.$this->db_last_error.'</p></div>';																	
+										} else { 
+											echo '<div class="error notice"><p>Your CSV file contained no data.</p></div>';									
+										}	 // END of if()	
+										
 									} // END of else{}
-								} // END of else{}
+								} // END of else{}								
 							} else {
 								echo '<div class="notice-warning notice"><p>Import cancelled.</p></div>';
-							}
+							}					
 						}
 						break;
 					case 'filtercol':
@@ -1450,12 +960,12 @@ if( !class_exists( 'october_plugin' ) ) {
 						break;
 					default:
 						echo '<div class="error notice"><p>Unknown action. ['.$_GET[ 'action' ].']</p></div>';
-				}
+				}			
 			}
-
+			
 			return $returnFlag;
 		} // END function db_lt_doDefaultActions()
-
+		
 		// Handle the admin menu requirements for a custom database table
 		public function db_handleAdminMenu( $name = null ) {
 			$this->log( 3, "db_handleAdminMenu() started. name = ".$name );
@@ -1464,27 +974,27 @@ if( !class_exists( 'october_plugin' ) ) {
 				$this->echo_post( true );
 				$this->echo_files( true );
 			}
-
+			
 			if( null !== $name ) {
 				// First, manage any default actions passed in the _GET array
 				$doList = $this->db_lt_doDefaultActions( $name );
-
+					
 				// Next, manage any default bulk actions passed in the _POST array
 				$this->db_lt_doDefaultBulkActions( $name );
-
+			
 				// If required, display the table data in a WP List Table
 				if( true == $doList) {
 					$this->db_lt_display( $name );
 				}
 			}
 		}
-
-
-
-
-
-
-
+		
+		
+		
+		
+		
+		
+		
 		/**
 		 *
 		 *	CUSTOM DATABASE TABLES
@@ -1492,24 +1002,20 @@ if( !class_exists( 'october_plugin' ) ) {
 		 *	Functionality to easily build, write and read custom database tables
 		 *
 		**/
-
+		
 		// return a full, valid WP table name for the given table array
 		public function db_tablename( $table ) {
 			global $wpdb;
 			return $wpdb->prefix.$this->slug.'_'.$table['name'];
 		}
-
+		
 		// return the definition array for a given table name
 		public function get_table_array( $name ) {
-			$this->log( 2, "get_table_array() started. name = ".$name );
 			$result = null;
 			if( null !== $this->custom_db ) {
 				foreach( $this->custom_db as $table ) {
-					$this->log( 3, "get_table_array() started. Checking ..." );
 					if( 'array' == gettype( $table ) ) {
-						$this->log( 2, "get_table_array() Found this array: ".print_r( $table, true ) );
 						if( array_key_exists( 'name', $table ) && $table[ 'name' ] == $name ) {
-							$this->log( 3, "get_table_array() started. FOUND name = ".$name.", array = ".print_r( $table, true ) );
 							$result = $table;
 						}
 					} // end of if( 'array' )
@@ -1517,7 +1023,7 @@ if( !class_exists( 'october_plugin' ) ) {
 			}
 			return $result;
 		}
-
+		
 		public function create_db_table( $table ) {
 //			$this->log( 1, "create_db_table() started. table = ".print_r( $table, true ) );
 			$this->log( 2, "create_db_table() started." );
@@ -1538,41 +1044,41 @@ if( !class_exists( 'october_plugin' ) ) {
 			$result = dbDelta( $sql );
 			$this->log( 2, "create_db_table() result = ".print_r( $result, true ) );
 		}
-
+		
 		public function check_db_tables() {
-			$this->log( 3, "check_db_tables() started." );
-
+			$this->log( 2, "check_db_tables() started." );
+			
 			// Check for any custom_db entries
 			if( null !== $this->custom_db ) {
 				$this->log( 2, "check_db_tables() custom_db is NOT null" );
 				global $wpdb;
-
-				// we have custom_db entries, so loop through them
+				
+				// we have custom_db entries, so loop through them 
 				foreach( $this->custom_db as $table ) {
 					$this->log( 3, "check_db_tables() loop on ".print_r( $table, true ) );
-
+					
 					if( 'array' == gettype( $table ) ) {
-
+						
 						$table_name = $this->db_tablename( $table );
-
+					
 						// First, check if the table exists. If not, create it
 						$this->log( 3, "check_db_tables() checking ".$table_name );
 						if( $wpdb->get_var( "SHOW TABLES LIKE '$table_name'" ) != $table_name ) {
-							$this->log( 2, "check_db_tables() table ".$table_name." not found. Create." );
+							$this->log( 2, "check_db_tables() table ".$table_name." not found." );
 							$this->create_db_table( $table );
 //							if( array_key_exists( 'init', $table ) ) { // this was an idea I had about setting initial data
 //								foreach( $table['init'] as $row ) {
 //								}
 //							}
 						} else {
-							$this->log( 3, "check_db_tables() table ".$table_name." found. Now check the version?" );
+							$this->log( 2, "check_db_tables() table ".$table_name." found. Now check the version?" );
 						}
 					} // end of if( 'array' )
-
+					
 				} // end of foreach()
 			}
 		}
-
+		
 		//	Create an admin menu and submenus for any database used
 		//	(Called during admin_menu hook)
 		public function make_db_menu() {
@@ -1596,61 +1102,58 @@ if( !class_exists( 'october_plugin' ) ) {
 					} // end of if( 'array' )
 				}
 			}
-
-			if( true == $menuRequired ) {
+			
+			if( $menuRequired ) {
 				// an admin menu is required for the database. Add it.
 				$this->log( 2, "make_db_menu() Menu is required - create it." );
 				$pageTitle = ( array_key_exists( 'pageTitle' , $this->custom_db ) ) ? $this->custom_db[ 'pageTitle' ] : "oDatabase page" ;
 				$menuName = ( array_key_exists( 'menuName' , $this->custom_db ) ) ? $this->custom_db[ 'menuName' ] : "oDatabase";
-				$capabilities = ( array_key_exists( 'capability' , $this->custom_db ) ) ? $this->custom_db[ 'capability' ] : "manage_options"; 
 				add_menu_page(
-					$pageTitle,			// Title of page
-					$menuName,			// The text to be used for the menu item
-					$capabilities,		// The capability the user must have to be able to see this menu item	
-					"odatabase_menu",	// Slug name for this menu item
+					$pageTitle,
+					$menuName,
+					"manage_options",
+					"odatabase_menu", 
 					null, // if this callback is null, it defaults to submenu 0, which is a good thing
-					'dashicons-networking',	// icon name
-					30					// ordinal position
+					'dashicons-networking',
+					30
 				);
-
+				
 				// add the required submenus
 				foreach( $this->custom_db as $table ) {
 					if( 'array' == gettype( $table ) ) {
-						$this->log( 3, "make_db_menu() custom_db table = ".print_r( $table, true ) );
 
 						if( array_key_exists( 'admin', $table ) ) {
 							// yes, this one needs a menu
-							$this->log( 2, "make_db_menu() custom_db table needs a submenu for ".$table[ 'name' ] );
+							$this->log( 2, "make_db_menu() custom_db table needs a submenu" );						
 							$admin = $table[ 'admin' ];
-
-							// if the user defined their own callback method, use that.
+	
+							// if the user defined their own callback method, use that. 
 							// Otherwise, dynamically create one
 							$callbackName = ( array_key_exists( 'callback', $admin ) ) ? $admin[ 'callback' ] : "db_menu_".$admin[ 'slug' ];
 							if( ! is_callable( $callbackName ) ) {
-								$this->log( 2, "make_db_menu() the callback '".$callbackName."' does not exist. Create it." );
+								$this->log( 2, "make_db_menu() the callback '".$callbackName."' does not exist. Create it." ); 
 								$callbackFunc = function() use( $callbackName, $table ) {
 									$this->log( 2, $callbackName."() [dynamically created callback] started." );
-									$this->db_handleAdminMenu( $table[ 'name' ] );
+									$this->db_handleAdminMenu( $table[ 'name' ] );				
 								};
 								$this->methods[ $callbackName ] = \Closure::bind( $callbackFunc, $this, get_class() );
-							}
-							$capabilities = ( array_key_exists( 'capability' , $admin ) ) ? $admin[ 'capability' ] : "manage_options";
+							} 
 
 							add_submenu_page(
 								"odatabase_menu",
 								$admin[ 'label' ],
 								$admin[ 'label' ],
-								$capabilities,			
+								"manage_options",
 								$admin[ 'slug' ],
 								array( &$this, $callbackName )
 							);
 						} // end of if( array_key_exists() )
-
+						
 					} // end of if( 'array' )
 				}
 				// WordPress adds a submenu to Admin menus identical to the main menu item. Remove it.
 				remove_submenu_page( "odatabase_menu", "odatabase_menu" );
-
+				
 				// Load in the List Table class in preparation for building the menu pages
 //				$this->log( 2, "make_db_menu() Check for WP_List_Table." );
 //				if( ! class_exists( 'WP_List_Table' ) ) {
@@ -1659,23 +1162,23 @@ if( !class_exists( 'october_plugin' ) ) {
 //				} else {
 //					$this->log( 3, "make_db_menu() WP_List_Table was found already." );
 //				}
-			}
-
+			} 
+			
 		}
-
+		
 		// get the data from a table
 		// $table can either be the name of the table, or the array from this object
-		public function db_get( $table, $where = null, $orderby = null, $fields = "*" ) {
+		public function db_get( $table, $where = null, $orderby = null ) {
 			$this->log( 2, "db_get() started." );
 			$table_array = ( 'string' == gettype( $table) ) ? $this->get_table_array( $table ) : $table;
 			$table_name = $this->db_tablename( $table_array );
 			$this->log( 3, "db_get() get data from table ".$table_name );
 			global $wpdb;
 			$wpdb->show_errors();
-			$sql = "SELECT ".$fields." FROM ".$table_name;
+			$sql = "SELECT * FROM ".$table_name;
 			$sql .= ( null !== $where ) ? " WHERE ".$where : " ";
 			$sql .= ( null !== $orderby ) ? " ORDER BY ".$orderby : " ORDER BY modified DESC ";
-			$this->log( 3, "db_get() sql = ".$sql );
+			$this->log( 2, "db_get() sql = ".$sql );
 			$result = $wpdb->get_results( $sql );
 //			$this->log( 3, "db_get() result = ".print_r( $result, true) );
 			$array = json_decode( json_encode( $result ), true );
@@ -1683,8 +1186,8 @@ if( !class_exists( 'october_plugin' ) ) {
 			$wpdb->hide_errors();
 			return $array;
 		}
-
-
+		
+		
 		// insert a new row
 		// $table can either be the name of the table, or the array from this object
 		// $data is a hash array of col => value pairs
@@ -1698,22 +1201,16 @@ if( !class_exists( 'october_plugin' ) ) {
 			global $wpdb;
 			$wpdb->show_errors();
 			$result = $wpdb->insert( $table_name, $data );
-//			$this->db_last_query = $wpdb->last_query;
-//			$this->db_last_error = $wpdb->last_error;
-			if( $result == false ) {
-				$this->wpdb_query = var_dump( $wpdb->last_query );
-				$this->wpdb_error = $wpdb->last_error;
-				$this->log( 1, "db_insert() var_dump = ". var_dump( $wpdb->last_query ) );
-				$this->log( 1, "db_insert() last error = ".$wpdb->last_error );
-			}
+			$this->db_last_query = $wpdb->last_query;
+			$this->db_last_error = $wpdb->last_error;
 //			$wpdb->print_error();
 			$wpdb->hide_errors();
-			$this->log( 2, "db_insert() last query = ".$wpdb->last_query );
-			$this->log( 2, "db_insert() last error = ".$wpdb->last_error );
+			$this->log( 1, "db_insert() last query = ".$wpdb->last_query );
+			$this->log( 1, "db_insert() last error = ".$wpdb->last_error );
 			$this->log( 3, "db_insert() result of insert = ".$result );
 			return $result;
 		}
-
+		
 
 		// update an existing row
 		// $table can either be the name of the table, or the array from this object
@@ -1729,17 +1226,12 @@ if( !class_exists( 'october_plugin' ) ) {
 			global $wpdb;
 			$wpdb->show_errors();
 			$result = $wpdb->update( $table_name, $data, array( 'id' => intval( $id )  ) );
-			if( $result == false ) {
-				$this->wpdb_query = $wpdb->last_query;
-				$this->wpdb_error = $wpdb->last_error;
-				$this->log( 3, "db_update() last query = ".$wpdb->last_query );
-				$this->log( 3, "db_update() last error = ".$wpdb->last_error );
-			}
+//			$this->log( 1, "db_update() var_dump = ". var_dump( $wpdb->last_query ) );	
 			$wpdb->hide_errors();
-			$this->log( 3, "db_update() result of update = ".$result );
+			$this->log( 2, "db_update() result of update = ".$result );
 			return $result;
 		}
-
+		
 
 		// delete a row
 		// $table can either be the name of the table, or the array from this object
@@ -1752,17 +1244,11 @@ if( !class_exists( 'october_plugin' ) ) {
 			global $wpdb;
 			$wpdb->show_errors();
 			$result = $wpdb->delete( $table_name, array( 'id' => $id ) );
-			if( $result == false ) {
-				$this->wpdb_query = $wpdb->last_query;
-				$this->wpdb_error = $wpdb->last_error;
-				$this->log( 1, "db_delete() last query = ".$wpdb->last_query );
-				$this->log( 1, "db_delete() last error = ".$wpdb->last_error );
-			}
 			$wpdb->hide_errors();
 			$this->log( 2, "db_delete() result of delete = ".$result );
 			return $result;
 		}
-
+		
 		// display the edit page for a table (used for both new and edit)
 		// $current = current table data, $action = new or edit, $id = id of table row if action == edit
 		public function display_db_edit( $current, $action, $id = 0 ) {
@@ -1770,16 +1256,16 @@ if( !class_exists( 'october_plugin' ) ) {
 			$title = ( 'new' == $action ) ? 'Add New '.$current['admin']['singular'] : 'Edit Existing '.$current['admin']['singular'];
 			$currentData = ( 'new' == $action ) ? null : $this->db_get( $current[ 'name' ], 'id = '.$id );
 			$formAction = ( 'new' == $action ) ? 'save' : 'update';
-			echo '<div class="wrap"><h2>'.$title.'</h2><p>&nbsp;</p>';
+			echo '<div class="wrap"><h2>'.$title.'</h2><p>&nbsp;</p>'; 
 			echo sprintf(' <div style="width: 100%%;"><form id="db_edit_form" method="post" action="?page=%s&action=%s">', $_REQUEST['page'], $formAction );
-
+			
 			// Loop through each col provided in the class property for this $current table
 			foreach( $current[ 'cols' ] as $key => $value ) {
-
+				
 				// Check to see if there is any data provided in admin for us to use
 				$colData = null;
 				$label = $key;
-				if( array_key_exists( 'admin', $current) && array_key_exists( 'cols', $current[ 'admin' ] )  && array_key_exists( $key, $current[ 'admin' ][ 'cols' ] ) ) {
+				if( array_key_exists( 'cols', $current[ 'admin' ] )  && array_key_exists( $key, $current[ 'admin' ][ 'cols' ] ) ) {
 					$colData = $current[ 'admin' ][ 'cols' ][ $key ];
 					$label = $colData[ 'label' ];
 				}
@@ -1798,77 +1284,18 @@ if( !class_exists( 'october_plugin' ) ) {
 					$prefix = ( array_key_exists( 'prefix', $colData ) ) ? $colData[ 'prefix'] : ''; // Print something to the left of the data field. default = null
 					$suffix = ( array_key_exists( 'suffix', $colData ) ) ? $colData[ 'suffix'] : ''; // Print something to the right of the data field. default = null
 				}
-
+				
 				if( false == $hidden ) {
 					// This column isn't hidden for the edit/new screen. Display it.
-
+					
 					// first column of the screen contains the labels
-					echo '<div style="width: 20%; padding: 4px 2em 4px 0px; font-weight: bold; display: inline-block;">';
-					echo $label;
-					if( null !== $colData && array_key_exists( 'description', $colData ) ) {
-						echo '<br /><span style="font-size: 0.85em; font-weight: 300; line-height: 0.6em;">'.$colData[ 'description' ]."</span>\n";
-					}
-					echo '</div> <!-- close of first column -->';
-
+					echo '<div style="width: 20%; padding: 4px 2em 4px 0px; font-weight: bold; display: inline-block;">';			
+					echo $label.'</div> <!-- close of first column -->';
+				
 					// second column of the screen contains the data entry
 					echo '<div style="width: 77%; padding: 4px 0px; display: inline-block;">'.$prefix;
 					$sql = explode( " ", $value );
-
-					// do the special display for items linked to rows in other tables
-					if( null !== $colData && array_key_exists( 'link', $colData ) ) {
-						$link = explode( ".", $colData[ 'link' ] );
-						if( isset( $link[0] ) && isset( $link[1] ) ) {
-//							echo 'table = '.$link[0].", field = ".$link[1]."<br />\n";
-							$linkData = $this->db_get( $link[0], null, $link[1], 'id, '.$link[1] );
-							$editData = ( null == $currentData ) ? null : $currentData[0][ $key ];
-							$selectedId = $editData;
-//							echo "editData = ".$editData."<br />\n";
-							if( count( $linkData > 0 ) ) {
-								// if multiple, we need to json decode the data
-								if( array_key_exists( 'linktype', $colData) && $colData[ 'linktype' ] == 'multiple' ) {
-									$selectedId = json_decode( $editData );
-								}
-//								echo "selectedId = ".print_r( $selectedId, true )."<br />\n";
-								$multiple = array_key_exists( 'linktype', $colData ) ? $colData[ 'linktype' ] : "";
-								$nameAtt = ( 'multiple' == $multiple ) ? $key."[]" : $key;
-								$sizeAtt = ( 'multiple' == $multiple ) ? ' size="10" ' : "";
-								echo '<select name="'.$nameAtt.'" '.$sizeAtt.$multiple.">\n";
-								foreach( $linkData as $linkRow ) {
-									// Should this item be selected?
-									if( 'multiple' == $multiple ) {
-										// if it is a multiple select situation, check to see of the id is in the array of ids
-										$selected = ( in_array( $linkRow[ 'id' ], $selectedId ) ) ? "selected" : "";
-									} else {
-										// otherwise, this is a single select only, so a quick compare of id values
-										$selected = ( $selectedId == $linkRow[ 'id' ] ) ? "selected" : "";
-									}
-									echo '<option '.$selected.' style="padding: 2px 2em 0px 0.5em;" value="'.$linkRow[ 'id' ].'">'.$linkRow[ $link[1] ]."</option>\n";
-								}
-								echo "</select>\n";
-							} else {
-								echo "No data available in ".$link[0]." table.";
-							}
-						} else {
-							echo "ERROR: Bad table.field in link definition. ";
-						}
-						$editable = false;	// stop the class from showing any other editable field for this
-						$hidden = true;		// stop the class from dislaying the value of this field
-					}
-
-					// do the special display for items that have been given a list of options in the admin->cols array
-					if( null !== $colData && array_key_exists( 'options', $colData ) ) {
-						$editData = ( null == $currentData ) ? null : $currentData[0][ $key ];
-						echo '<select name="'.$key.'">';
-						foreach( $colData[ 'options' ] as $value => $label ) {
-							// Should this item be selected?
-							$selected = ( $editData == $value ) ? "selected" : "";
-							echo '<option value="'.$value.'" '.$selected.' >'.$label.'</option>';
-						}
-						echo '</select>';
-						$editable = false;	// stop the class from showing any other editable field for this
-						$hidden = true;		// stop the class from dislaying the value of this field
-					}
-
+				
 					if( true == $editable ) {
 
 						// check to see if the sql for this is VARCHAR()
@@ -1883,7 +1310,7 @@ if( !class_exists( 'october_plugin' ) ) {
 //							echo ", default = ".$default;
 							echo '<input type="text" name="'.$key.'" maxlength="'.$max.'" size="'.$size.'" value="'.$default.'">';
 						}
-
+					
 						// check to see if the sql for this is CHAR()
 						$char = strpos( $sql[0], 'CHAR(' );
 						if( ( false !== $char ) && ( 0 == $char ) ) {
@@ -1896,7 +1323,7 @@ if( !class_exists( 'october_plugin' ) ) {
 //							echo ", default = ".$default;
 							echo '<input type="text" name="'.$key.'" maxlength="'.$max.'" size="'.$size.'" value="'.$default.'">';
 						}
-
+						
 						// check to see if the sql for this is DECIMAL()
 						$char = strpos( $sql[0], 'DECIMAL(' );
 						if( ( false !== $char ) && ( 0 == $char ) ) {
@@ -1917,7 +1344,7 @@ if( !class_exists( 'october_plugin' ) ) {
 //							echo ", default = ".$default;
 							echo '<input type="number" name="'.$key.'" max="'.$absmax.'" value="'.$default.'" step="'.$step.'" style="width: '.$width.'em; text-align: right;">';
 						}
-
+						
 						// check to see if the sql for this is one of the many ints: TINYINT(), SMALLINT(), MEDIUMINT(), INT(), BIGINT()
 						$char = strpos( $sql[0], 'INT(' );
 						$this->log( 3, "display_db_edit() Looking for INT(, char = ".$char );
@@ -1932,7 +1359,7 @@ if( !class_exists( 'october_plugin' ) ) {
 //							echo ", default = ".$default;
 							echo '<input type="number" name="'.$key.'" maxlength="'.$max.'" size="'.$size.'" value="'.$default.'" style="text-align: right;">';
 						}
-
+						
 						// check to see if the sql for this is BOOLEAN
 						$char = strpos( $sql[0], 'BOOLEAN' );
 						$this->log( 3, "display_db_edit() Looking for BOOLEAN, sql = ".$sql[0].", char = ".$char );
@@ -1948,24 +1375,24 @@ if( !class_exists( 'october_plugin' ) ) {
 							$checked = ( 1 == $default ) ? " checked " : "";
 							echo '<input type="checkbox" name="'.$key.'" value="1" '.$checked.'>';
 						}
-
+					
 					} else {
-
+					
 						// this data is not editable. Just display it if it exists
-						if( $currentData !== null && $hidden == false ) {
+						if( $currentData !== null ) {
 							echo $currentData[0][ $key ];
 						}
 					}
-
+				
 					echo $suffix.'</div> <!-- close of second column -->';
-
+					
 					if( true == $sep ) {
 						echo "<hr style='height: 0.5px; border-top: 1px solid rgba(0, 0, 0, 0.2); border-bottom: 1px solid rgba(255, 255, 255, 1);' />\n";
 					}
 				}
 
 			}
-
+			
 			// that's all the columns done. Now do buttons
 			echo '<input type="hidden" name="table" value="'.$current[ 'name' ].'">';
 			echo '<input type="hidden" name="id" value="'.$id.'">';
@@ -1976,41 +1403,41 @@ if( !class_exists( 'october_plugin' ) ) {
 			echo ' </form></div><!-- end of data entry table -->';
 			echo '</div>';
 		}
-
-		// a small debugging tool to echo the contents of the $_GET object
+		 
+		// a small debugging tool to echo the contents of the $_GET object 
 		// $flagHTML is a boolean (true/false) that toggles whether or not to include <pre> tags
 		public function echo_get( $flagHTML = false ) {
 			if( $flagHTML ) {
 				echo '<pre>_GET = '.print_r( $_GET, true).'</pre>';
 			} else {
-				echo '_GET = '.print_r( $_GET, true);
+				echo '_GET = '.print_r( $_GET, true);		
 			}
 		}
 
-		// a small debugging tool to echo the contents of the $_POST object
+		// a small debugging tool to echo the contents of the $_POST object 
 		// $flagHTML is a boolean (true/false) that toggles whether or not to include <pre> tags
 		public function echo_post( $flagHTML = false ) {
 			if( $flagHTML ) {
 				echo '<pre>_POST = '.print_r( $_POST, true).'</pre>';
 			} else {
-				echo '_POST = '.print_r( $_POST, true);
+				echo '_POST = '.print_r( $_POST, true);	
 			}
 		}
 
-		// a small debugging tool to echo the contents of the $_FILES object
+		// a small debugging tool to echo the contents of the $_FILES object 
 		// $flagHTML is a boolean (true/false) that toggles whether or not to include <pre> tags
 		public function echo_files( $flagHTML = false ) {
 			if( $flagHTML ) {
 				echo '<pre>_FILES = '.print_r( $_FILES, true).'</pre>';
 			} else {
-				echo '_FILES = '.print_r( $_FILES, true);
+				echo '_FILES = '.print_r( $_FILES, true);	
 			}
 		}
 
-
-
-
-
+		
+		
+		
+		
 		/**
 		 *
 		 *	CUSTOM FIELDS
@@ -2018,7 +1445,7 @@ if( !class_exists( 'october_plugin' ) ) {
 		 *	If we have Custom Fields added, allow for them.
 		 *
 		**/
-
+		
 		public function include_custom_fields() {
 			$this->log( 2, "include_custom_fields() Started." );
 			if( null !== $this->custom_post_types ) {
@@ -2032,17 +1459,15 @@ if( !class_exists( 'october_plugin' ) ) {
 						foreach( $fields as $cf_key => $cf_val ) {
 							$this->add_custom_field_meta_box( $cf_key, $cf_val, $ct_key );
 							// Add a callback to the save_post WordPress action hook to ensure the meta data is saved
-							if( array_key_exists( 'fields' , $cf_val ) ) {
-								foreach( $cf_val['fields'] as $field_name => $fdata ) {
-									$this->add_custom_field_callback( $field_name, $fdata );
-								} // END of foreach
-							}
+							foreach( $cf_val['fields'] as $field_name => $fdata ) {
+								$this->add_custom_field_callback( $field_name, $fdata );
+							} // END of foreach
 						} // END of foreach()
 					} // END of if()
 				} // END of foreach()
 			} // END of if()
 		} // END public function include_custom_fields()
-
+		
 		public function add_custom_field_meta_box( $cf_key, $cf_val, $parent = null ) {
 			$this->log( 3, "add_custom_field_meta_box() Started. Add ".$cf_key );
 			// Add a meta box for this custom field to the custom post admin screen
@@ -2050,143 +1475,107 @@ if( !class_exists( 'october_plugin' ) ) {
 			$myrender = array_key_exists( 'callback', $cf_val ) ? $cf_val['callback'] : array(&$this, 'render_custom_meta_box');
 			$mycontext = array_key_exists( 'context', $cf_val ) ? $cf_val['context'] : 'normal';
 			$mypriority = array_key_exists( 'priority', $cf_val ) ? $cf_val['priority'] : 'default';
-			$myfields = array_key_exists( 'fields', $cf_val ) ? $cf_val[ 'fields' ] : null;
-			add_meta_box(
-				$cf_val['slug']."_div",		// slug or id for the meta box					
+			add_meta_box( 
+				$cf_val['slug'],		// slug or id for the meta box
 				$mytitle,				// title of the meta box
 				$myrender,				// callback method to render the meta box
 				$parent,				// slug of the custom post this applies to
 				$mycontext,				// where the meta box is placed on the edit screen, either 'normal' or 'side'
 				$mypriority,			// the priority for placement order, one of 'low', 'default', 'core', 'high'
-				$myfields				// args passed to the callback function
+				$cf_val['fields']		// args passed to the callback function
 			);
 		}
-
+		
 		public function add_custom_field_callback( $field_name, $fdata ) {
 			$this->log( 2, "add_custom_field_callback() Started. Add ".$field_name."?" );
-			if( array_key_exists( $field_name, $_POST ) || ( $fdata['type'] == 'boolean' ) || ( $fdata['type'] == 'custom' ) ) {
+			if( array_key_exists( $field_name, $_POST ) || ( $fdata['type'] == 'boolean' ) ) {
 				$newfuncname = "save_post_meta_".$field_name;
-				$this->log( 2, "add_custom_field_callback() add_action outside newfuncname = ".$newfuncname );
+				$this->log( 3, "add_custom_field_callback() add_action outside newfuncname = ".$newfuncname );
 				$this->{ $newfuncname } = function( $arga, $argb ) use ($field_name, $fdata) {
-//					$this->log( 1, "add_custom_field_callback() add_action INSIDE post id = ".$arga );
-					$this->log( 2, "add_custom_field_callback() add_action INSIDE field_name = ".$field_name );
+					$this->log( 3, "add_custom_field_callback() add_action INSIDE post id = ".$arga );
+					$this->log( 3, "add_custom_field_callback() add_action INSIDE field_name = ".$field_name );
 					if( array_key_exists( $field_name, $_POST ) ) {
 						$this->log( 2, "add_custom_field_callback() update ".$field_name." with form data: ".$_POST[ $field_name ] );
 						update_post_meta( $arga, $field_name, $_POST[ $field_name ] );
-						if( $fdata['type'] == 'custom' ) {								
-							if( array_key_exists( 'save', $fdata ) ) {					
-								$this->log( 2, "add_custom_field_callback() update ".$field_name." with custom callback" );
-								$this->{ $fdata[ 'save' ] }( $arga, $field_name, $_POST[ $field_name ] ); 
-							} else {										
-								$this->log( 2, "add_custom_field_callback() update ".$field_name." with default save option." ); 
-								update_post_meta( $arga, $field_name, $_POST[ $field_name ] );	
-							}	
-						}
 					} else {
-						// No value in _POST to save, so save the value implied by no value (eg, checkboxes are not checked)
 						if( $fdata['type'] == 'boolean' ) {
-//							$this->log( 2, "add_custom_field_callback() update ".$field_name." with default boolean value of 0." );
+							$this->log( 2, "add_custom_field_callback() update ".$field_name." with default boolean value of 0." );
 							update_post_meta( $arga, $field_name, 0 );
 						}
 					}
 					if( 'parent' == $field_name ) {
 						$argb->post_parent = $_POST[ $field_name ];
-//						$this->log( 2, "add_custom_field_callback() add_action INSIDE field is PARENT, post = ".print_r( $argb, true ) );
+						$this->log( 2, "add_custom_field_callback() add_action INSIDE field is PARENT, post = ".print_r( $argb, true ) );
 					}
 				};
-				add_action( 'post_updated', $this->{ $newfuncname }, 10, 2 );
-//				add_action( 'save_post', $this->{ $newfuncname }, 10, 2 );
+				add_action( 'save_post', $this->{ $newfuncname }, 10, 2 );
 			} else {
-				$this->log( 2, "add_custom_field_callback() ".$field_name." doesn't exist in _POST" );
+				$this->log( 3, "add_custom_field_callback() ".$field_name." doesn't exist in _POST" );
 			} // END of if()
 		}
-
-
+		
+		
 		/**
 		 *	Function to render out the contents of a custom field meta box
 		 *	(See http://blog.teamtreehouse.com/create-your-first-wordpress-custom-post-type)
 		 *	(See https://developer.wordpress.org/reference/functions/add_meta_box/)
-		**/
+		**/	
 		public function render_custom_meta_box( $mypost, $myargs ) {
 			$this->log( 3, "render_custom_meta_box() Started. myargs=".print_r( $myargs,true ) );
 			$this->log( 3, "args=".print_r( $myargs, true ) );
-			if( array_key_exists( 'args', $myargs ) && sizeof( $myargs[ 'args' ] ) > 0 ) {
-				foreach( $myargs[ 'args' ] as $field_name => $field_data ) {
-					if( array_key_exists( 'label', $field_data ) ) {
-						echo "<p><label>".$field_data['label']."</label>"; 
-					}
-					$custom = get_post_custom( $mypost->ID );
-					$current = array_key_exists( $field_name, $custom ) ? $custom[ $field_name ][0] : "";
-					switch ( $field_data['type'] ) {
-						case 'text':
-							$size = array_key_exists( 'size', $field_data ) ? $field_data['size'] : 40;
-							echo '<br /><input type="text" name="'.$field_name.'" value="'.$current.'" size="'.$size.'" />';
-							break;
-						case 'number':
-							$min = array_key_exists( 'minimum', $field_data ) ? $field_data['minimum'] : 0;
-							$max = array_key_exists( 'maximum', $field_data ) ? $field_data['maximum'] : 10;
-							echo '<br /><input type="number" name="'.$field_name.'" value="'.$current.'" min="'.$min.'" max="'.$max.'" style="width: 9em;"/>';
-							break;
-						case 'date':
-							echo '<br /><input type="date" name="'.$field_name.'" value="'.$current.'" />';
-							// min / max support to come
-							break;
-						case 'time':
-							echo '<br /><input type="time" name="'.$field_name.'" step="5" value="'.$current.'" />';
-							break;
-						case 'boolean':
-							if( array_key_exists( $field_name, $custom ) ) {
-								$checked = ( $custom[ $field_name ][0] == 1 || $custom[ $field_name ][0] == 'true' || $custom[ $field_name ][0] == 'on' ) ? " checked " : " ";
-							} else {
-								$checked = "";
-							}
-							echo ' <input type="checkbox" name="'.$field_name.'" '.$checked.' value="1" style="padding: 2px 0px 0px 2px; width: 1.2em; height: 1.2em;"/>';
-							break;
-						case 'custom_drop':
-							if( array_key_exists( 'options', $field_data ) ) {
-								echo '<br /><select name="'.$field_name.'" value="'.$current.'"'.">\n";
-								foreach( $field_data[ 'options' ] as $key => $value ) {
-									$selected = ( $value == $current ) ? " selected " : " ";
-									echo '<option value="'.$value.'" '.$selected.'>'.$key."</option>\n";
-								}
-								echo "</select>\n";
-							} else {
-								echo "<br />(Missing options list)";
-							}
-							break;
-						case 'parent_drop':
-							$pages = wp_dropdown_pages(
-								array(
-									'post_type' => $field_data['parent_type'],
-									'selected' => $mypost->post_parent,
-									'name' => 'parent',
-									'show_option_none' => __( '(no parent)' ),
-									'sort_column' => 'menu_order, post_title',
-									'echo' => 0
-								)
-							);
-							if ( ! empty( $pages ) ) {
-								echo '<br />'.$pages;
-							} else {
-								echo "Couldn't create drop down";
-							}
-							break;
-						case 'custom':
-							$this->log( 3, "render_custom_meta_box() Do custom render. field_data = ".print_r( $field_data, true ) );
-							$this->{ $field_data[ 'render' ] }( $mypost->ID, $field_name, $field_data );
-							break;
-						default:
-							echo '[unknown field type]';
-							break;
-					}
-					echo "</p>\n";
+			foreach( $myargs['args'] as $field_name => $field_data ) {
+				echo "<p><label>".$field_data['label']."</label>";
+				$custom = get_post_custom( $mypost->ID );
+				$current = array_key_exists( $field_name, $custom ) ? $custom[ $field_name ][0] : "";
+				switch ( $field_data['type'] ) {
+					case 'text':
+						$size = array_key_exists( 'size', $field_data ) ? $field_data['size'] : 40;
+						echo '<br /><input type="text" name="'.$field_name.'" value="'.$current.'" size="'.$size.'" />';
+						break;
+					case 'number':
+						$min = array_key_exists( 'minimum', $field_data ) ? $field_data['minimum'] : 0;
+						$max = array_key_exists( 'maximum', $field_data ) ? $field_data['maximum'] : 10;
+						echo '<br /><input type="number" name="'.$field_name.'" value="'.$current.'" min="'.$min.'" max="'.$max.'" style="width: 9em;"/>';
+						break;
+					case 'date':
+						echo '<br /><input type="date" name="'.$field_name.'" value="'.$current.'" />';
+						// min / max support to come
+						break;
+					case 'time':
+						echo '<br /><input type="time" name="'.$field_name.'" step="5" value="'.$current.'" />';
+						break;
+					case 'boolean':
+						$checked = ( $custom[ $field_name ][0] == 1 ) ? " checked " : " ";
+						echo ' <input type="checkbox" name="'.$field_name.'" '.$checked.' value="1" style="padding: 2px 0px 0px 2px; width: 1.2em; height: 1.2em;"/>';
+						break;
+					case 'parent_drop':
+						$pages = wp_dropdown_pages( 
+							array( 
+								'post_type' => $field_data['parent_type'], 
+								'selected' => $mypost->post_parent, 
+								'name' => 'parent',
+								'show_option_none' => __( '(no parent)' ), 
+								'sort_column' => 'menu_order, post_title', 
+								'echo' => 0 
+							) 
+						);
+						if ( ! empty( $pages ) ) {
+							echo '<br />'.$pages;
+						} else {
+							echo "Couldn't create drop down";
+						}
+						break;
+					default:
+						echo '[unknown field type]';
+						break;
 				}
+				echo "</p>\n";
 			}
 		}
 
 		/**
 		 *	If we have Custom Taxonomies added, create them
-		**/
+		**/		
 		public function create_custom_taxonomies() {
 			$this->log( 3, "create_custom_taxonomies() Started." );
 			if( null !== $this->custom_taxonomies ) {
@@ -2200,7 +1589,7 @@ if( !class_exists( 'october_plugin' ) ) {
 				}
 			}
 		}
-
+		
 		/**
 		 *	Not yet implemented
 		**/
@@ -2218,8 +1607,8 @@ if( !class_exists( 'october_plugin' ) ) {
 			echo "</div>";
 		}
 
-
-
+		
+		
 		/**
 		 *
 		 *	CUSTOM POST TYPES
@@ -2227,7 +1616,7 @@ if( !class_exists( 'october_plugin' ) ) {
 		 *	If we have Custom Post Types added, create them
 		 *
 		**/
-
+		
 		public function create_custom_post_types() {
 			$this->log( 3, "create_custom_post_types() Started." );
 			if( null !== $this->custom_post_types ) {
@@ -2247,7 +1636,7 @@ if( !class_exists( 'october_plugin' ) ) {
 				});
 			}
 		}
-
+		
 		public function add_custom_post_parent_meta( $cpt_key, $cpt_val ) {
 			$this->log( 3, "add_custom_post_parent_meta() Started." );
 			// Add a custom field for this custom post type to provide info regarding parent
@@ -2279,22 +1668,22 @@ if( !class_exists( 'october_plugin' ) ) {
 		 *
 		 *	Handle ajax calls
 		 *	The method looks for a $_POST key called "command", and uses the value of that key to match a key in the $ajax_commands
-		 *	property, and uses the value of that as the name of a function to execute.
-		 *
+		 *	property, and uses the value of that as the name of a function to execute. 
+		 *	
 		 *	Eg
 		 *	public $ajax_commands = array(
 		 *		"testcommand" => "testfunc"
 		 *	);
-		 *
+		 * 	
 		 *	The above code will execute the method $my_instance->testfunc() when the ajax receives "command" => "testcommand".
 		 *	The function can access all the form data through $my_instance->ajax_response['form']. It can send data back using
 		 *	any added key=>value pairs on that array, or using the add_ajaxData() method below to add key/value pairs to the
 		 *	$my_instance->ajax_response['data'] object, or using the push_ajaxData() method below to add an object to the
-		 *	$my_instance->ajax_response['data'] array. The function should return 1 for successful completion, or 0 for
+		 *	$my_instance->ajax_response['data'] array. The function should return 1 for successful completion, or 0 for 
 		 *	error/incomplete (and add a meaningful error message to $my_instance->ajax_response['error'] ).
 		**/
 		public function do_ajax() {
-			$this->log( 3, "do_ajax() Started." );
+			$this->log( 2, "do_ajax() Started." );
 
 			// Set up an object to contain the response
 			$this->ajax_response = array(
@@ -2306,10 +1695,10 @@ if( !class_exists( 'october_plugin' ) ) {
 				'error' => 'Undefined error',
 				'message' => ''
 			);
-
+			
 			// if user is not logged in, and only logged in users are allowed, exit.
 			if( ( true == $this->ajax_users_only ) && ( !is_user_logged_in() ) ) {
-				$this->log( 1, "do_ajax() User is not logged in. Exit." );
+				$this->log( 3, "do_ajax() User is not logged in. Exit." );
 				$this->ajax_response['error'] = "User is not logged in.";
 				$this->ajax_response_text = json_encode($this->ajax_response);
 				echo $this->response_text;
@@ -2318,13 +1707,13 @@ if( !class_exists( 'october_plugin' ) ) {
 
 			// Confirm a valid nonce has been received. If not valid, exit.
 			if( !wp_verify_nonce( $_POST['_ajax_nonce'], $this->slug."-ajax-nonce" ) ) {
-				$this->log( 1, "do_ajax() Invalid nonce. Exit." );
+				$this->log( 3, "do_ajax() Invalid nonce. Exit." );
 				$this->ajax_response['error'] = "Nonce is invalid";
 				$this->ajax_response_text = json_encode($this->ajax_response);
 				echo $this->ajax_response_text;
 				wp_die();
 			}
-
+			   
 			// Process the contents of the ajax call
 			if( null !== $this->ajax_response['command'] ) {		// make sure we actually received a command
 				if( array_key_exists( $this->ajax_response['command'], $this->ajax_commands ) ) {
@@ -2338,14 +1727,14 @@ if( !class_exists( 'october_plugin' ) ) {
 			} else {
 				$this->ajax_response['error'] = "No valid command provided.";
 			}
-
+			
 			// All processing is complete. Encode the response and send it.
 			$this->ajax_response_text = json_encode($this->ajax_response);
 			$this->log( 2, "do_ajax() json=".$this->ajax_response_text );
 			echo $this->ajax_response_text;
 			wp_die();
 		} // END public function do_ajax()
-
+		
 		/**
 		 * Add data onto the ajax_response['data'] as an object
 		**/
@@ -2363,7 +1752,7 @@ if( !class_exists( 'october_plugin' ) ) {
 			array_push( $this->ajax_response[ 'data' ], $value );
 		}
 
-
+		
 		/**
 		 *	FRONT END SCRIPT AND STYLE ENQUEUES
 		 *
@@ -2376,7 +1765,6 @@ if( !class_exists( 'october_plugin' ) ) {
 			// First try to load a CSS style sheet with the slug name
 			if( file_exists( plugin_dir_path( __FILE__ ).$this->slug.'.css' ) ) {
 				wp_enqueue_style( $this->slug."_css", plugins_url( $this->slug.'.css', __FILE__ ) );
-				$this->log( 2, "do_enqueues() Default CSS file located and enqueued. ".plugins_url( $this->slug.'.css', __FILE__ ) );
 			}
 			// Now load any additional CSS. Subclasses will need to override this property. See above.
 			if( null !== $this->extra_css ) {
@@ -2395,20 +1783,19 @@ if( !class_exists( 'october_plugin' ) ) {
 					}
 				} // END foreach
 			} // END if()
-
+			
 			// enqueue all scripts ( handle, script source, dependencies )
 			// First try to load a JS file with the slug name
 			$this->log( 3, "do_enqueues() Checking for default javascript file = ".plugin_dir_path( __FILE__ ).$this->slug.'.js' );
 			if( file_exists( plugin_dir_path( __FILE__ ).$this->slug.'.js' ) ) {
 				$this->log( 3, "do_enqueues() Default javascript file detected. slug = ".$this->js_slug );
-				wp_enqueue_script( $this->slug."_js",  plugins_url( $this->js_slug.'.js', __FILE__ ) , array('jquery') );
+				wp_enqueue_script( $this->slug."_js",  plugins_url( $this->slug.'.js', __FILE__ ) , array('jquery') );
 				// the localise below is to get the admin-ajax url and other vital info to the javascript file = handle, variable namespace, data
-				wp_localize_script( $this->slug."_js", $this->js_slug, array(
+				wp_localize_script( $this->slug."_js", $this->js_slug, array( 
 													'pluginsUrl' => plugins_url(),
 					   								'ajaxUrl' => admin_url( 'admin-ajax.php' ),
 													'wnonce' => wp_create_nonce( $this->slug."-ajax-nonce" )
 				) );
-				$this->log( 2, "do_enqueues() Default JS file located and enqueued. ".plugins_url( $this->js_slug.'.js', __FILE__ )  );
 			}
 			// Now load any additional JS. Subclasses will need to override this property. See above.
 			if( null !== $this->extra_js ) {
@@ -2426,7 +1813,7 @@ if( !class_exists( 'october_plugin' ) ) {
 						wp_enqueue_script( $extra['name']."_js", plugins_url( $extra['name'].".js", __FILE__ ) );
 					}
 					// the localise below is to get the admin-ajax url and other vital info to the javascript file = handle, variable namespace, data
-					wp_localize_script( $extra['name']."_js", $extra['name'], array(
+					wp_localize_script( $extra['name']."_js", $extra['name'], array( 
 															'pluginsUrl' => plugins_url(),
 							   								'ajaxUrl' => admin_url( 'admin-ajax.php' ),
 															'wnonce' => wp_create_nonce( $extra['name']."-ajax-nonce" )
@@ -2436,7 +1823,7 @@ if( !class_exists( 'october_plugin' ) ) {
 
 		} // END public function do_enqueues()
 
-
+		
 		/**
 		 *	ADMIN SCRIPT AND STYLE ENQUEUES
 		 *
@@ -2467,12 +1854,12 @@ if( !class_exists( 'october_plugin' ) ) {
 					}
 				} // END foreach
 			} // END if()
-
+			
 			// enqueue all scripts ( handle, script source, dependencies )
 			// First try to load a JS file with the slug name
 			if( file_exists( plugin_dir_path( __FILE__ ).$this->slug.'_admin.js' ) ) {
 				wp_enqueue_script( $this->slug."_admin_js",  plugins_url( $this->slug.'_admin.js', __FILE__ ) , array('jquery') );
-				wp_localize_script( $this->slug."_admin_js", $this->js_slug."_admin", array(
+				wp_localize_script( $this->slug."_admin_js", $this->js_slug."_admin", array( 
 													'pluginsUrl' => plugins_url(),
 					   								'ajaxUrl' => admin_url( 'admin-ajax.php' ),
 													'wnonce' => wp_create_nonce( $this->slug."_admin-ajax-nonce" )
@@ -2494,7 +1881,7 @@ if( !class_exists( 'october_plugin' ) ) {
 						wp_enqueue_script( $extra['name']."_js", plugins_url( $extra['name'].".js", __FILE__ ) );
 					}
 					// the localise below is to get the admin-ajax url and other vital info to the javascript file = handle, variable name, data
-					wp_localize_script( $extra['name']."_admin_js", $extra['name'], array(
+					wp_localize_script( $extra['name']."_admin_js", $extra['name'], array( 
 															'pluginsUrl' => plugins_url(),
 							   								'ajaxUrl' => admin_url( 'admin-ajax.php' ),
 															'wnonce' => wp_create_nonce( $extra['name']."_admin-ajax-nonce" )
@@ -2505,8 +1892,8 @@ if( !class_exists( 'october_plugin' ) ) {
 		} // END public function do_admin_enqueues()
 
 
-
-
+		
+		
 		/**
 		 *	SHORTCODES
 		 *
@@ -2514,11 +1901,11 @@ if( !class_exists( 'october_plugin' ) ) {
 		 *	See explanation at top of the file.
 		 *
 		**/
-
+		
 		public function do_shortcode( $atts, $content ) {
 			$this->log( 2,"do_shortcode() Started." );
 			$textout = "";
-
+			
 			// check that the shortcode property has been over-ridden with some values.
 			if( null !== $this->shortcodes ) {
 				$this->log( 3,"do_shortcode() shortcodes=".print_r( $this->shortcodes, true ) );
@@ -2527,18 +1914,18 @@ if( !class_exists( 'october_plugin' ) ) {
 				// check to see if a command has been provided in the shortcode. If it has, use it; otherwise use 'default'.
 				$command = ( array_key_exists( 'command', $atts ) ) ? $atts[ 'command' ] : 'default';
 				$this->log( 3,"do_shortcode() command=".$command );
-
+				
 				// check to see if the determined command is included in the overridden shortcodes property
 				if( array_key_exists( $command, $this->shortcodes ) ) {
-
+					
 					// the command is in the array, so we can now use the default attribute values.
 					$allatts = shortcode_atts( $this->shortcodes[ $command ], $atts ); // merge the defaults with the shortcode attributes
 					$this->log( 3,"do_shortcode() allatts=".print_r( $allatts, true ) );
-
+					
 					// check that the callback has been defined
 					if( array_key_exists( 'callback', $this->shortcodes[ $command ] ) ) {
 						$func = $this->shortcodes[ $command ][ 'callback' ];
-
+						
 						// check that the callback function exists in the instance
 						if( method_exists( $this, $func ) ) {
 							$this->log( 2,"do_shortcode() Shortcode command ".$command." is valid. Calling callback method." );
@@ -2547,12 +1934,12 @@ if( !class_exists( 'october_plugin' ) ) {
 							$this->log( 1,"do_shortcode() [ERROR. Callback for ".$command." is defined but does not exist.]" );
 							$textout = "[ERROR. Callback for ".$command." is defined but does not exist.]";
 						}
-
+						
 					} else {
 						$this->log( 1,"do_shortcode() [ERROR. No callback defined for ".$command."]" );
 						$textout = "[ERROR. No callback defined for ".$command."]";
 					}
-
+					
 				} else {
 					// the command does not exist in the shortcodes property so we don't know what to do. Return an error message.
 					$this->log( 1,"do_shortcode() [ERROR. Unknown command. (".$command.")]" );
@@ -2565,13 +1952,13 @@ if( !class_exists( 'october_plugin' ) ) {
 				$textout = "[ERROR. Shortcode is not supported.]";
 			}
 			return $textout;
-
+			
 		} // END public function do_shortcode()
+		
+		
+		
 
-
-
-
-
+		
 		/**
 		 *	ADMIN MENUS
 		 *
@@ -2594,38 +1981,25 @@ if( !class_exists( 'october_plugin' ) ) {
 				$this->do_admin_menu( 'settings' );
 				$this->do_admin_menu( 'tools' );
 				$this->do_admin_menu( 'media' );
-				$this->log( 3,"add_admin_menus() admin_page_hooks = ".print_r( $GLOBALS[ 'admin_page_hooks' ], true ) );
 				if( array_key_exists( 'menu', $this->admin_menus ) ) {
 					$menu = $this->admin_menus['menu'];
-					$this->log( 3,"add_admin_menus() Do an admin menu - admin_menu = ".print_r( $menu, true ) );
-					// Check if the menu currently exists. If not, add it.
-					// This way, we should be able to add submenus to existing menus.
-					if ( empty ( $GLOBALS[ 'admin_page_hooks' ][ $this->slug."_menu" ] ) &&
-						 empty ( $GLOBALS[ 'admin_page_hooks' ][ 'edit.php?post_type='.$menu[ 'slug' ] ] ) ) {
-						$this->log( 3,"add_admin_menus() Add a top-level item to the Admin menu.".print_r( $menu, true ) );
-						add_menu_page(
-							( array_key_exists( 'title', $menu ) ? $menu[ 'title' ] : $menu[ 'label' ] ),
-							$menu[ 'label' ],
-							"manage_options",
-							$this->slug."_menu",
-							null, // if this is null, it defaults to submenu 0, which is a good thing
-							( array_key_exists( 'icon', $menu ) ? $menu[ 'icon' ] : null ),
-							( array_key_exists( 'position', $menu ) ? $menu[ 'position' ] : null )
-						);
-					} else {
-						$this->log( 2,"add_admin_menus() Use an existing admin menu." );
-					}
+					$this->log( 3,"add_admin_menus() Add a top-level item to the Admin menu.".print_r( $menu, true ) );
+					add_menu_page(
+						( array_key_exists( 'title', $menu ) ? $menu[ 'title' ] : $menu[ 'label' ] ),
+						$menu[ 'label' ],
+						"manage_options",
+						$this->slug."_menu",
+						null, // if this is null, it defaults to submenu 0, which is a good thing
+						( array_key_exists( 'icon', $menu ) ? $menu[ 'icon' ] : null ),
+						( array_key_exists( 'position', $menu ) ? $menu[ 'position' ] : null )
+					);
 					// now do the submenus
 					$submenuslug = 0;
 					if( array_key_exists( 'submenus', $menu ) ) {
 						foreach( $menu['submenus'] as $submenu ) {
 							$this->log( 3,"add_admin_menus() Add a submenu to a top-level item in the Admin menu.".print_r( $submenu, true ) );
-							$topslug =  ( empty ( $GLOBALS[ 'admin_page_hooks' ][ $this->slug."_menu" ] ) ) ?
-							 	'edit.php?post_type='.$menu[ 'slug' ] :
-								$this->slug."_menu";
-							$this->log( 3,"add_admin_menus() Slug of the top-level item = ".$topslug );
 							add_submenu_page(
-								$topslug,
+								$this->slug."_menu",
 								( array_key_exists( 'title', $menu ) ? $submenu[ 'title' ] : $submenu[ 'label' ] ),
 								$submenu[ 'label' ],
 								"manage_options",
@@ -2639,8 +2013,8 @@ if( !class_exists( 'october_plugin' ) ) {
 				} // END if
 			} // END if
 		} // END public function add_menus()
-
-		/**
+		
+		/**	
 		 *	Shortcut method for adding items to the standard WordPress admin menus
 		 *	Called from add_admin_menus().
 		 *	(Custom top level menus and submenus are added in add_admin_menus() )
@@ -2662,10 +2036,10 @@ if( !class_exists( 'october_plugin' ) ) {
 					$this->slug."_".$type."_menu",
 					array( &$this, 'display_admin_screen' )
 				);
-			} // END if
+			} // END if		
 		} // END public function do_admin_menu()
-
-		/**
+		
+		/**	
 		 *	This method is used for displaying all admin menu pages/screens
 		 *	Added to every menu item as the display callback method in both add_admin_menus() and do_admin_menu().
 		 *	Determines what menu is being requested, then calls display_menu_page() with the required menu data.
@@ -2678,9 +2052,8 @@ if( !class_exists( 'october_plugin' ) ) {
 			$tlmenu = $this->slug."_menu";
 //			$this->log( 2,"display_admin_screen() currentScreen=".print_r( $currentScreen, true) );
 //			$this->log( 2,"display_admin_screen() currentScreen->parent=".$currentScreen->parent_base );
-			$this->log( 1,"display_admin_screen() currentScreen->id = ".$currentScreen->id );
-			$this->log( 1,"display_admin_screen() currentScreen type = ".$type );
-			$this->log( 1,"display_admin_screen() currentScreen tlmenu = ".$tlmenu );
+			$this->log( 3,"display_admin_screen() currentScreen->id = ".$currentScreen->id );
+			$this->log( 3,"display_admin_screen() currentScreen type = ".$type );
 			switch( $type ) {
 				case 'tools':
 				case 'settings':
@@ -2725,7 +2098,7 @@ if( !class_exists( 'october_plugin' ) ) {
 					break;
 			}
 		} // END public function display_admin_screen()
-
+		
 		/**
 		 *	Determine the admin screen type given a currentScreen object
 		**/
@@ -2735,8 +2108,8 @@ if( !class_exists( 'october_plugin' ) ) {
 			$type = ( 'upload' == $type ) ? 'media' : $type;
 			return $type;
 		}
-
-		/**
+		
+		/**	
 		 *	This method is used for displaying all admin menu pages/screens
 		 *	Called from display_admin_screen() with the data from the $admin_menus property specific to the required page.
 		**/
@@ -2754,17 +2127,17 @@ if( !class_exists( 'october_plugin' ) ) {
 					$this->log( 1,"display_menu_page() Admin menu page not found: ".print_r( $menu, true ) );
 					echo "<pre>Admin menu page not found: ".print_r( $menu, true )."</pre>" ;
 				}
-			} // END if / else
+			} // END if / else	
 		}
 
-
+		
 
 		/**
 		 *	PRINT METHODS
 		 *
 		 *	A collection of helper methods to assist primarily in building admin pages
 		**/
-
+		
 		public function print_header() {
 			$currentScreen = get_current_screen();
 			$type = $this->get_currentScreenType( $currentScreen );
@@ -2802,7 +2175,7 @@ if( !class_exists( 'october_plugin' ) ) {
 			}
 			echo "</div>";
 		}
-
+		
 		/**
 		 *	get Critical Content
 		 *
@@ -2810,7 +2183,7 @@ if( !class_exists( 'october_plugin' ) ) {
 		 *	The idea is to be able to remotely switch on or off the plugin if the client doesn't pay, or is similarly a twat.
 		 *	Returns an JSON-decoded object/array as required.
 		**/
-
+		
 		function get_cc( $opts = array() ) {
 			$this->log( 3,"get_cc() Started." );
 			$this->curl_error = null;
@@ -2843,23 +2216,23 @@ if( !class_exists( 'october_plugin' ) ) {
 			if( $opts[ 'data' ][ 'object' ] ) {
 				return json_decode( $response );
 			}
-
+			
 			return $response;
 		}
-
+		
 		/**
 		 *	BUDDYPRESS METHODS
 		 *
 		 *	A collection of helper methods to assist in modifying Buddypress
 		**/
-
+		
 		function add_bp_member_submenu( $data ) {
 			global $bp;
 			$userid = bp_displayed_user_id();
 			$userdomain = bp_core_get_user_domain( $userid );
 
 			if( ( array_key_exists( "view_name", $data ) ) && ( array_key_exists( "view_slug", $data ) ) && ( array_key_exists( "view_content", $data ) ) ) {
-
+		
 				// create a function to display the contents of the 'view' submenu item
 				$viewme = null;
 				if( array_key_exists( "view_title", $data ) ) { // if title has been given, include it
@@ -2867,20 +2240,20 @@ if( !class_exists( 'october_plugin' ) ) {
 						add_action( 'bp_template_title', function() use( $data ) {
 							echo $data[ 'view_title' ];
 						} );
-						bp_core_load_template( $data[ 'view_content' ] );	// without this, the page doesn't load and you get a 404 error!!
+						bp_core_load_template( $data[ 'view_content' ] );	// without this, the page doesn't load and you get a 404 error!! 
 						add_action( 'bp_template_content', function() use( $data ) {
 							bp_get_template_part( $data[ 'view_content' ] );
 						} );
 					};
 				} else { // otherwise, just use the contents template
 					$viewme = function() use( $data ) {
-						bp_core_load_template( $data[ 'view_content' ] );	// without this, the page doesn't load and you get a 404 error!!
+						bp_core_load_template( $data[ 'view_content' ] );	// without this, the page doesn't load and you get a 404 error!! 
 						add_action( 'bp_template_content', function() use( $data ) {
 							bp_get_template_part( $data[ 'view_content' ] );
 						} );
 					};
 				}
-
+		
 				// now use all that info to create the submenu item
 				bp_core_new_subnav_item( array(
 					// these array keys MUST exist ( or we wouldn't have even got this far )
@@ -2893,10 +2266,10 @@ if( !class_exists( 'october_plugin' ) ) {
 					'parent_url' => ( array_key_exists( "parent_slug", $data ) ) ? trailingslashit( $userdomain.$data[ 'parent_slug' ] ) : bp_displayed_user_domain().'profile/',
 					'position' => ( array_key_exists( "edit_position", $data ) ) ? $data[ 'edit_position' ] : 99
 					)
-				);
+				);		
 //				$this->log( 1, "add_bp_member_submenu() bp->members->nav = ".print_r( $bp->members->nav, true ));
 			}
-
+	
 			// if this is the admin, or the current user is the same as the displayed user, show the edit item if it exists
 			if( bp_is_my_profile() || current_user_can('administrator') ) {
 				if( ( array_key_exists( "edit_name", $data ) ) && ( array_key_exists( "edit_slug", $data ) ) && ( array_key_exists( "edit_content", $data ) ) ) {
@@ -2908,20 +2281,20 @@ if( !class_exists( 'october_plugin' ) ) {
 							add_action( 'bp_template_title', function() use( $data ) {
 								echo $data[ 'edit_title' ];
 							} );
-							bp_core_load_template( $data[ 'edit_content' ] );	// without this, the page doesn't load and you get a 404 error!!
+							bp_core_load_template( $data[ 'edit_content' ] );	// without this, the page doesn't load and you get a 404 error!! 
 							add_action( 'bp_template_content', function() use( $data ) {
 								bp_get_template_part( $data[ 'edit_content' ] );
 							} );
 						};
 					} else { // otherwise, just use the contents template
 						$editme = function() use( $data ) {
-							bp_core_load_template( $data[ 'edit_content' ] );	// without this, the page doesn't load and you get a 404 error!!
+							bp_core_load_template( $data[ 'edit_content' ] );	// without this, the page doesn't load and you get a 404 error!! 
 							add_action( 'bp_template_content', function() use( $data ) {
 								bp_get_template_part( $data[ 'edit_content' ] );
 							} );
 						};
 					}
-
+			
 					// now use all that info to create the submenu item
 					bp_core_new_subnav_item( array(
 						// these array keys MUST exist ( or we wouldn't have even got this far )
@@ -2934,15 +2307,15 @@ if( !class_exists( 'october_plugin' ) ) {
 						'parent_url' => ( array_key_exists( "parent_slug", $data ) ) ? trailingslashit( $userdomain.$data[ 'parent_slug' ] ) : bp_displayed_user_domain().'profile/',
 						'position' => ( array_key_exists( "edit_position", $data ) ) ? $data[ 'edit_position' ] : 99
 						)
-					);
+					);	
 //					$this->log( 1, "add_bp_member_submenu() bp->members->nav = ".print_r( $bp->members->nav, true ));
 				}
 			}
 		}
 
-
-
-
+		
+		
+		 
 	} // END of class
 } // END if
 
